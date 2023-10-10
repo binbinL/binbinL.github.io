@@ -7,13 +7,13 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <meta name="author" content="John Doe">
+    <meta name="author" content="Bin">
 
 
 
 
 
-<title>基因富集 | Hexo</title>
+<title>GeneEnrichment | Hexo</title>
 
 
 
@@ -123,11 +123,73 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">基因富集</h1>
+            <h1 class="post-title">GeneEnrichment</h1>
             
                 <div class="post-meta">
                     
@@ -164,12 +226,13 @@
 </li>
 <li><p>Term是相关组分或者过程</p>
 </li>
-<li><p><img src="C:\Users\15423\AppData\Roaming\Typora\typora-user-images\image-20230921185414605.png" alt="image-20230921185414605"></p>
+<li><p><img src="/.com//image1.png" alt="image1"></p>
 </li>
 <li><p>相关基因对此路径正向调控</p>
 </li>
-<li><p><img src="C:\Users\15423\AppData\Roaming\Typora\typora-user-images\image-20230921185554438.png" alt="image-20230921185554438"></p>
+<li><p><img src="/.com//image2.png" alt="image-20230921185554438"></p>
 </li>
+<li></li>
 </ul>
 </li>
 </ul>
@@ -209,7 +272,7 @@
             </div>
             <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Bin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
 
