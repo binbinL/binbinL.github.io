@@ -13,7 +13,7 @@
 
 
 
-<title>conda op_manual | Blog</title>
+<title>零碎的点 | Blog</title>
 
 
 
@@ -123,46 +123,115 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">conda op_manual</h1>
+            <h1 class="post-title">零碎的点</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 10, 2023&nbsp;&nbsp;19:45:55</a>
+                        Date: <a href="#">October 11, 2023&nbsp;&nbsp;19:28:50</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/biology/">biology</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">常用命令</span><br><span class="line">conda env <span class="built_in">list</span></span><br><span class="line">conda activate envname</span><br><span class="line"></span><br><span class="line">conda create -n envname python=x.x</span><br><span class="line">conda remove -n envname --<span class="built_in">all</span></span><br></pre></td></tr></table></figure>
-
+            <h2 id="持续更新…"><a href="#持续更新…" class="headerlink" title="持续更新…"></a>持续更新…</h2><h3 id="SNP"><a href="#SNP" class="headerlink" title="SNP"></a>SNP</h3><ul>
+<li><p><strong>单核苷酸多态性</strong>(<strong>Single Nucleotide Polymorphisms</strong>)</p>
+</li>
+<li><p>是指在基因组上单个核苷酸的变异，包括转换、颠换、缺失和插入，形成的遗传标记</p>
+</li>
+<li><p>从理论上来看每一个SNP位点都可以有4种不同的变异形式,但实际上发生的只有两种，即转换和颠换</p>
 <ul>
-<li>遇到过pip乱跑的情况……故修改对应的配置文件</li>
+<li>**转换(transitions)**是指嘌呤之间，或者嘧啶之间的替换</li>
+<li>**颠换(transversions)**是指嘌呤和嘧啶之间的替换</li>
 </ul>
-<p>创建完成后，修改配置文件</p>
-<p>path：<code>D:\Anaconda\envs\pybiodata\Lib\site.py</code></p>
-<p>补全对应的USER_SITE 和 USER_BASE</p>
-<p>该路径为pip的默认安装地址</p>
-<p><img src="/2023/10/10/conda-op-manual/image-20231010195017612.png" alt="image-20231010195017612"></p>
-<ul>
-<li>查看当前python位置和pip的位置</li>
+</li>
+<li><p>SNP 在CG序列上出现最为频繁，而且多是C转换为T ,原因是CG中的胞嘧啶常被甲基化,而后自发地脱氨成为胸腺嘧啶。</p>
+</li>
 </ul>
-<p><img src="/2023/10/10/conda-op-manual/image-20231010195127930.png" alt="image-20231010195127930"></p>
-<ul>
-<li>换源（condarc.txt文件）</li>
+<h3 id="CNV"><a href="#CNV" class="headerlink" title="CNV"></a>CNV</h3><ul>
+<li><p><strong>拷贝数变异(Copy number variation)</strong></p>
+</li>
+<li><p>由<strong>基因组发生重排</strong>而导致的,一般指长度1KB以上的基因组大片段的<strong>拷贝数增加或者减少</strong></p>
+</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - https://mirrors.aliyun.com/anaconda/pkgs/main/</span><br><span class="line">  - https://mirrors.aliyun.com/anaconda/cloud/conda-forge/</span><br><span class="line">  - https://mirrors.aliyun.com/anaconda/cloud/bioconda/</span><br><span class="line">show_channel_urls: true</span><br><span class="line"></span><br><span class="line">ssl_verify: false</span><br><span class="line">report_errors: true</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/628870519">2023年最新conda和pip国内镜像源 - 知乎 (zhihu.com)</a></p>
 
         </div>
 
@@ -172,10 +241,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/conda/"># conda</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -186,10 +251,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/10/11/%E9%9B%B6%E7%A2%8E%E7%9A%84%E7%82%B9/">零碎的点</a>
+                <a class="prev" rel="prev" href="/2023/10/11/ATAC-seq/">ATAC-seq</a>
             
             
-            <a class="next" rel="next" href="/2023/10/10/Chip-seq/">Chip-seq</a>
+            <a class="next" rel="next" href="/2023/10/10/conda-op-manual/">conda op_manual</a>
             
         </section>
 

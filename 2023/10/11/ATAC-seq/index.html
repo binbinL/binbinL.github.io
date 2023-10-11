@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Bin">
+
+
+
+
+
+<title>ATAC-seq | Blog</title>
+
+
+
+    <link rel="icon" href="/github-mark.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/"></a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/"></a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ATAC-seq</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 11, 2023&nbsp;&nbsp;20:28:58</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/">单细胞测序</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="ATAC-Seq"><a href="#ATAC-Seq" class="headerlink" title="ATAC-Seq"></a>ATAC-Seq</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul>
+<li>DNA一圈圈绕在八个组蛋白上，形成<strong>核小体</strong>。</li>
+<li>一个个核小体构成串珠样结构，进一步折叠聚合，形成染色体。</li>
+<li>基因的转录需要将DNA的高级结构打开一部分，即表达基因的区域解开，而这一过程，主要由染色体组蛋白的修饰（尤其是乙酰化）来实现的，这部分打开的染色质就是<strong>开放染色质</strong>。</li>
+<li>染色质一旦打开，一些调控蛋白，如转录因子与之结合。染色质的这种特性就是<strong>染色质的可及性</strong></li>
+<li>故染色质的可及性反应的就是调控因子与开放染色质结合的状态，与转录调控密切相关</li>
+</ul>
+<p><img src="/2023/10/11/ATAC-seq/image-20231010210444225.png" alt="image-20231010210444225"></p>
+<h3 id="如何找开放的染色质区域"><a href="#如何找开放的染色质区域" class="headerlink" title="如何找开放的染色质区域"></a>如何找开放的染色质区域</h3><ul>
+<li><p><strong>转座酶Tn5</strong></p>
+<ul>
+<li>DNA转座是一种由DNA转座酶介导，把DNA序列从染色体的一个区域插入到另外一个区域的现象。这个过程需要插入的位点的染色质是开放的。</li>
+</ul>
+</li>
+<li><p>将NGS接头连接到转座酶，携带这些接头的转座酶进入细胞核后，在染色质开放区域自由发挥，使染色质断裂并将这些接头插入到开放的染色质区域中，后利用已知序列的标签进行PCR后测序，就知道哪些区域是开放染色质了。</p>
+</li>
+</ul>
+<h3 id="ATAC-seq和Chip-seq的区别"><a href="#ATAC-seq和Chip-seq的区别" class="headerlink" title="ATAC-seq和Chip-seq的区别"></a>ATAC-seq和Chip-seq的区别</h3><ul>
+<li><strong>ChIP-seq</strong>是实验前明确有一个感兴趣的转录因子，根据目标转录因子设计抗体，验证感兴趣的转录因子是否与DNA存在相互作用</li>
+<li><strong>ATAC-seq</strong>没有具体到某个转录因子，是在全基因组范围内检测染色质的开放程度，可以得到全基因组范围内的蛋白质可能结合的位点信息，用这个技术方法与其他方法结合是想去筛感兴趣的调控因子。</li>
+</ul>
+<h3 id="常见的染色质开放区"><a href="#常见的染色质开放区" class="headerlink" title="常见的染色质开放区"></a>常见的染色质开放区</h3><ul>
+<li><p>常见的染色质开放区域主要是基因上游的启动子和远端的调控元件如增强子和沉默子</p>
+</li>
+<li><p><strong>启动子</strong>是靠近转录起始点（TSS）的DNA区域，它包含转录因子的结合位点（TFBS），故转录因子能够结合在启动子上TFBS，招募RNA聚合酶进而转录基因</p>
+</li>
+<li><p><strong>增强子</strong>一般位于启动子下游或上游1Mb的DNA区域，转录因子与增强子结合，并与启动子区域接触时，能够促进基因的转录。相反，沉默子会减少或抑制基因的表达</p>
+</li>
+<li><p><strong>ATAC-seq可以帮助识别启动子区域、潜在的增强子或沉默子</strong>，即ATAC-seq中的peak，往往是启动子、增强子序列，以及一些反式调控因子结合的位点。</p>
+</li>
+</ul>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ul>
+<li><p><strong>鉴定重要的转录因子</strong></p>
+<ul>
+<li>ATAC捕获的染色质开放区域一般是正在转录的那部分DNA序列的上下游，得到这些序列就可以对富集到的序列结合<strong>motif分析</strong>，识别哪种转录因子参与了基因表达调控。<ul>
+<li>motif分析用于识别DNA、RNA或蛋白质序列中的特定、重复的模式，这些模式通常与生物学上重要的结构、功能或调控元件相关联。这些模式通常称为”motif”或”序列模式”，它们可以是短的核苷酸序列（例如DNA序列中的TF结合位点或蛋白质序列中的结构域），也可以是更复杂的结构模式（如RNA二级结构中的stem-loop或蛋白质三维结构中的保守的结构域）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>生成转录因子结合区域的特征(footprinting)</strong></p>
+<ul>
+<li>转录因子结合在DNA上后，它占有的空间阻碍了转座酶Tn5酶切在其他无核小体区域，这样就会留下一个一个小区域，称为<strong>足迹（footprint）</strong>，在这些区域中，reads由高覆盖率峰值突然下降，如图，在转录因子结合的位置是一个“低谷”的形状。</li>
+<li><img src="/2023/10/11/ATAC-seq/image-20231011103854440.png" alt="image-20231011103854440"></li>
+</ul>
+</li>
+<li><p><strong>得到核小体位置</strong></p>
+</li>
+</ul>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p><img src="/2023/10/11/ATAC-seq/image-20231011111220370.png" alt="image-20231011111220370"></p>
+<p><img src="/2023/10/11/ATAC-seq/image-20231011111248802.png" alt="image-20231011111248802"></p>
+<h4 id="Preprocessing-Sequence-Reads"><a href="#Preprocessing-Sequence-Reads" class="headerlink" title="Preprocessing Sequence Reads"></a>Preprocessing Sequence Reads</h4><p><img src="/2023/10/11/ATAC-seq/image-20231011111625396.png" alt="image-20231011111625396"></p>
+<ul>
+<li><strong>Demultiplexing</strong>：将每个样本的reads区分开</li>
+<li><strong>Adaptor Trimming</strong>：去除测序接头</li>
+<li><strong>Alignment</strong>：将得到reads比对到基因组上</li>
+</ul>
+<h4 id="QC"><a href="#QC" class="headerlink" title="QC"></a>QC</h4><ul>
+<li>Filter Cells</li>
+<li>Filter fragments</li>
+</ul>
+<h4 id="Batch-correction"><a href="#Batch-correction" class="headerlink" title="Batch correction"></a>Batch correction</h4><ul>
+<li>Data integration（LIGER、Harmony）</li>
+</ul>
+<h4 id="Cell-type-annotation"><a href="#Cell-type-annotation" class="headerlink" title="Cell type annotation"></a>Cell type annotation</h4><ul>
+<li>由于ATAC-seq的特征中，不知道其基因是做什么的，需要进行特征转换</li>
+<li>将基因组上的peak转换成类似基因活性概念的特征</li>
+</ul>
+<h4 id="Differential-analysis"><a href="#Differential-analysis" class="headerlink" title="Differential analysis"></a>Differential analysis</h4><ul>
+<li>得到差异基因组的region，但不知道其功能</li>
+<li>GREAT tool：查看差异的peak</li>
+</ul>
+<h4 id="Trajectory-Inference"><a href="#Trajectory-Inference" class="headerlink" title="Trajectory Inference"></a>Trajectory Inference</h4><ul>
+<li>推断发育轨迹</li>
+<li>查看某个peak随着伪时间的推进的强弱</li>
+</ul>
+<h4 id="Co-accessibility"><a href="#Co-accessibility" class="headerlink" title="Co-accessibility"></a>Co-accessibility</h4><ul>
+<li>查看哪些peak有协同作用，这些peak在基因组上可能有互作作用（Cicero）</li>
+</ul>
+<h4 id="Motif-analysis"><a href="#Motif-analysis" class="headerlink" title="Motif analysis"></a>Motif analysis</h4><ul>
+<li>查看motif在哪个细胞类型中是特异性富集的，从而推断转录因子（ChromVAR）</li>
+</ul>
+<h4 id="Footprint-analysis"><a href="#Footprint-analysis" class="headerlink" title="Footprint analysis"></a>Footprint analysis</h4><ul>
+<li>右图一种颜色代表一种细胞类型</li>
+<li><img src="/2023/10/11/ATAC-seq/image-20231011114532634.png" alt="image-20231011114532634"></li>
+</ul>
+<h2 id="RF"><a href="#RF" class="headerlink" title="RF"></a>RF</h2><p><a target="_blank" rel="noopener" href="https://pubmed.ncbi.nlm.nih.gov/32637041/">Single-cell ATAC sequencing analysis: From data preprocessing to hypothesis generation - PubMed (nih.gov)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Be4y127Ho/?vd_source=2724e171abe917ee83ac28bba8b35c31">【FDU生统实践课-3】单细胞ATAC-seq全分析流程 30分钟入门_哔哩哔哩_bilibili</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31924355">ATAC-seq：染色质开放性测序技术 - 知乎 (zhihu.com)</a></p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/10/11/%E9%9B%B6%E7%A2%8E%E7%9A%84%E7%82%B9/">零碎的点</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Bin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
