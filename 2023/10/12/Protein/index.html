@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Bin">
+
+
+
+    <meta name="description" content="Record the learning process">
+
+
+
+<title>protein | Notes</title>
+
+
+
+    <link rel="icon" href="/github-mark.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/"></a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/"></a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">protein</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 12, 2023&nbsp;&nbsp;10:54:10</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/biology/">biology</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <ul>
+<li>蛋白质链具有方向性。蛋白质链的起始端有自由的氨基，被称为N端或氨基端；尾端则有自由的羧基，被称为C端或羧基端</li>
+</ul>
+<h2 id="蛋白质的生物合成"><a href="#蛋白质的生物合成" class="headerlink" title="蛋白质的生物合成"></a><strong>蛋白质的生物合成</strong></h2><ul>
+<li>DNA中的基因首先在RNA聚合酶等蛋白质的作用下转录为前mRNA，mRNA经由核糖体翻译成蛋白质</li>
+<li>生物体中的蛋白质合成总是从N-端到C-端</li>
+</ul>
+<h2 id="蛋白质的化学合成"><a href="#蛋白质的化学合成" class="headerlink" title="蛋白质的化学合成"></a><strong>蛋白质的化学合成</strong></h2><ul>
+<li>肽合成，在合成中可以加入非天然氨基酸，如荧光标记的氨基酸</li>
+<li>大多数化学合成方法都是从C-端到N-端进行合成</li>
+</ul>
+<h2 id="降解"><a href="#降解" class="headerlink" title="降解"></a><strong>降解</strong></h2><ul>
+<li><p>细胞不需要的或受损的非跨膜蛋白一般由<strong>蛋白酶体</strong>进行降解</p>
+</li>
+<li><p>真核生物的跨膜蛋白通过内体运送到<strong>溶酶体</strong>（动物细胞）或<strong>液泡</strong>（酵母）中进行降解</p>
+</li>
+</ul>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a><strong>结构</strong></h2><ul>
+<li><p>多数蛋白质可以通过本身氨基酸序列的性质进行自我折叠，但仍许多蛋白质需要分子伴侣的帮助来进行正确的折叠</p>
+<ul>
+<li>分子伴侣是一类协助细胞内分子组装和协助蛋白质折叠的蛋白质</li>
+</ul>
+</li>
+<li><p>蛋白质的一级结构</p>
+<ul>
+<li>组成蛋白质多肽链的线性氨基酸序列</li>
+<li>一个蛋白质是一个聚酰胺</li>
+</ul>
+</li>
+<li><p>蛋白质的二级结构</p>
+<ul>
+<li>依靠不同氨基酸之间的C&#x3D;O和N-H基团间的氢键形成的稳定结构，主要为<strong>α螺旋</strong>和<strong>β折叠</strong><ul>
+<li>α螺旋一般是右手螺旋，同一肽链上的每个残基的酰胺氢原子和位于它后面的第4个残基上的羰基氧原子之间形成氢键，这种氢键大致与螺旋轴平行</li>
+<li><img src="/2023/10/12/Protein/image-20231012115107615.png" alt="image-20231012115107615"></li>
+<li>β折叠中两条以上氨基酸链（肽链），或同一条肽链之间的不同部分形成平行或反平行排列，成为“股”。</li>
+<li>股与股之间会通过氢键固定，但氢键主要在股间而不是股内。氨基酸残基的R侧链分布在片层的上下</li>
+<li><img src="/2023/10/12/Protein/image-20231012115324700.png" alt="image-20231012115324700"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>蛋白质的三级结构</p>
+<ul>
+<li>通过多个二级结构元素在三维空间的排列所形成的一个蛋白质分子的三维结构，是单个蛋白质分子的整体形状</li>
+<li>蛋白质的三级结构大都有一个<strong>疏水核心</strong>来稳定结构，同时具有稳定作用的还有<strong>盐桥</strong> (蛋白质)、<strong>氢键</strong>和<strong>二硫键</strong>，甚至转译后修饰</li>
+<li>蛋白质可以由三级结构的不同大致分为三个主要类别：<strong>球蛋白</strong>、<strong>纤维蛋白</strong>和<strong>膜蛋白</strong><ul>
+<li>几乎所有的球蛋白都是水溶性的，许多球蛋白是酶</li>
+<li>纤维蛋白多为结构性的，例如，结缔组织的主要成分胶原蛋白，或头发和指甲的蛋白质成分角蛋白</li>
+<li>膜蛋白常常作为受体，或提供通道极性的或带电的分子通过细胞膜</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>蛋白质的四级结构</p>
+<ul>
+<li>由几个蛋白质分子（多肽链），通常称为蛋白质亚基所形成的结构，在功能上作为一个蛋白质复合体</li>
+</ul>
+</li>
+</ul>
+<h2 id="细胞功能"><a href="#细胞功能" class="headerlink" title="细胞功能"></a><strong>细胞功能</strong></h2><ul>
+<li><p>催化作用</p>
+<ul>
+<li><p>酶</p>
+<ul>
+<li><p>酶的催化反应具有高度的专一性和极高的催化效率</p>
+</li>
+<li><p>结合于酶上，并在酶的作用下发生反应的分子被称为底物。虽然酶分子通常含有数百个氨基酸残基，但参与与底物结合的残基只占其中的一小部分，而直接参与底物催化反应的残基则更少（平均为3-4个残基）,这部分参与底物结合和催化的区域被称为<strong>活性位点</strong></p>
+</li>
+<li><p>有一些酶需要结合一些小分子（辅酶或辅因子）才能够有效发挥催化作用</p>
+</li>
+<li><p>酶的活性还可以被酶抑制剂所抑制，或被酶激活剂所提高</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>信号传递和物质运输</p>
+<ul>
+<li><p>胰岛素</p>
+<ul>
+<li>作为细胞外蛋白质，可以将讯号从一个细胞（合成这些蛋白质的细胞）传送到身体其他组织中的细胞</li>
+</ul>
+</li>
+<li><p>膜蛋白受体</p>
+<ul>
+<li>结合细胞外的讯号分子来引发细胞内的生物化学反应</li>
+<li>多数受体都有一个位于细胞外表面的结合域〔结合讯号分子〕和一个位于细胞内的效应结构域（可能具有酶活性或可以发生构象变化以诱发与细胞内其他蛋白质的结合），两者之间通过跨膜域连接</li>
+</ul>
+</li>
+<li><p>血红蛋白</p>
+<ul>
+<li>载体运输蛋白能够结合特定的小分子并将它们运送到机体中的特定位置。这些蛋白质在运输的起点（往往具有较高的浓度）必须以高的亲和力结合它们的运输物，而在目的组织中（运输物质浓度较低）则必须释放所结合的物质。这就需要运输蛋白和所结合的物质之间有特定的亲和力。</li>
+<li>将氧气从肺中运输到其他组织和器官中</li>
+</ul>
+</li>
+<li><p>通道蛋白</p>
+<ul>
+<li><p>膜本身是疏水性的，极性或带电分子无法通过扩散作用穿过。作为跨膜蛋白的通道蛋白，含有可控制的内部通道，在一定条件下允许这些分子进出细胞</p>
+</li>
+<li><p>通道蛋白也有专一性，许多离子通道蛋白只选择性地对特定离子起作用</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%9B%8B%E7%99%BD%E8%B4%A8">https://zh.wikipedia.org/wiki/%E8%9B%8B%E7%99%BD%E8%B4%A8</a></p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2023/10/12/AminoAcid/">AminoAcid</a>
+            
+            
+            <a class="next" rel="next" href="/2023/10/11/ATAC-seq/">ATAC-seq</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Bin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

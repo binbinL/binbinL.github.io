@@ -15,7 +15,7 @@
 
 
 
-<title>GeneEnrichment | Notes</title>
+<title>AminoAcid | Notes</title>
 
 
 
@@ -187,21 +187,21 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">GeneEnrichment</h1>
+            <h1 class="post-title">AminoAcid</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 10, 2023&nbsp;&nbsp;17:08:03</a>
+                        Date: <a href="#">October 12, 2023&nbsp;&nbsp;20:31:09</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E5%88%86%E6%9E%90/">分析</a>
+                                <a href="/categories/biology/">biology</a>
                             
                         </span>
                     
@@ -210,37 +210,211 @@
         </header>
 
         <div class="post-content">
-            <h3 id="基因富集"><a href="#基因富集" class="headerlink" title="基因富集"></a>基因富集</h3><ul>
-<li><p>研究差异基因会和什么生物学功能或者什么生物学过程或者通路相关</p>
-</li>
-<li><p>Kegg and Go：</p>
+            <h2 id="结构通式"><a href="#结构通式" class="headerlink" title="结构通式"></a>结构通式</h2><p><img src="/2023/10/12/AminoAcid/image-20231011203244275.png" alt="image-20231011203244275"></p>
 <ul>
-<li><p>Input是差异基因</p>
-</li>
-<li><p>cc：细胞组分</p>
-</li>
-<li><p>bp：生物学过程</p>
-</li>
-<li><p>mf：分子功能</p>
-</li>
+<li>不同的侧链基团，不同的理化性质</li>
 </ul>
-</li>
-<li><p>GSEA：</p>
+<h2 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h2><ul>
+<li><p>蛋白质氨基酸</p>
 <ul>
-<li><p>Input是整个基因表达矩阵</p>
+<li>在蛋白质生物合成中，由专门的tRNA携带，直接参入到蛋白质分子之中，共22种：20种常见+2种不常见</li>
+</ul>
 </li>
-<li><p>Term是相关组分或者过程</p>
-</li>
-<li><p><img src="/2023/10/10/GeneEnrichment/image1.png" alt="image1"></p>
-</li>
-<li><p>相关基因对此路径正向调控</p>
-</li>
-<li><p><img src="/2023/10/10/GeneEnrichment/image2.png" alt="image-20230921185554438"></p>
-</li>
+<li><p>非蛋白质氨基酸</p>
+<ul>
+<li>不能直接参入到蛋白质分子之中，或者是蛋白质氨基酸翻译后修饰产物。如：瓜氨酸、鸟氨酸和羟脯氨酸</li>
 </ul>
 </li>
 </ul>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ma411G7QB/?spm_id_from=333.337.search-card.all.click">GSEA(Gene set enrichment analysis, 基因集富集分析)图怎么看？_哔哩哔哩_bilibili</a></p>
+<h2 id="亲水性和疏水性"><a href="#亲水性和疏水性" class="headerlink" title="亲水性和疏水性"></a>亲水性和疏水性</h2><ul>
+<li><strong>亲水</strong>：极性R基团<ul>
+<li>能与水分子形成氢键（相似相溶，水是极性的）</li>
+</ul>
+</li>
+<li><strong>疏水</strong>：非极性R基团<ul>
+<li>对脂溶性物质亲和性较高</li>
+</ul>
+</li>
+</ul>
+<h2 id="等电点"><a href="#等电点" class="headerlink" title="等电点"></a>等电点</h2><ul>
+<li><p>氨基酸带电情况取决于所处环境的PH值</p>
+</li>
+<li><p>按照侧链在中性情况下的带电情况可以分为中性氨基酸、酸性氨基酸、碱性氨基酸</p>
+</li>
+<li><p>非极性氨基酸都是中性氨基酸，极性氨基酸中中性氨基酸、酸性氨基酸、碱性氨基酸都有</p>
+</li>
+<li><p>非极性氨基酸（疏水）</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>中文名</th>
+<th>三字母</th>
+<th>单字母</th>
+<th>等电点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>丙氨酸</td>
+<td>Ala</td>
+<td>A</td>
+<td>6.00</td>
+</tr>
+<tr>
+<td>缬氨酸</td>
+<td>Val</td>
+<td>V</td>
+<td>5.96</td>
+</tr>
+<tr>
+<td>亮氨酸</td>
+<td>Leu</td>
+<td>L</td>
+<td>5.98</td>
+</tr>
+<tr>
+<td>异亮氨酸</td>
+<td>Ile</td>
+<td>I</td>
+<td>6.02</td>
+</tr>
+<tr>
+<td>苯丙氨酸</td>
+<td>Phe</td>
+<td>F</td>
+<td>5.48</td>
+</tr>
+<tr>
+<td>脯氨酸</td>
+<td>Pro</td>
+<td>P</td>
+<td>6.3</td>
+</tr>
+<tr>
+<td>色氨酸</td>
+<td>Try</td>
+<td>W</td>
+<td>5.98</td>
+</tr>
+<tr>
+<td>蛋氨酸</td>
+<td>Met</td>
+<td>M</td>
+<td>5.74</td>
+</tr>
+</tbody></table>
+<ul>
+<li>极性中性氨基酸（亲水）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>中文名</th>
+<th>三字母</th>
+<th>单字母</th>
+<th>等电点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>甘氨酸</td>
+<td>Gly</td>
+<td>G</td>
+<td>5.97</td>
+</tr>
+<tr>
+<td>半胱氨酸</td>
+<td>Cys</td>
+<td>C</td>
+<td>5.07</td>
+</tr>
+<tr>
+<td>丝氨酸</td>
+<td>Ser</td>
+<td>S</td>
+<td>5.68</td>
+</tr>
+<tr>
+<td>酪氨酸</td>
+<td>Try</td>
+<td>Y</td>
+<td>5.66</td>
+</tr>
+<tr>
+<td>苏氨酸</td>
+<td>Thr</td>
+<td>T</td>
+<td>5.60</td>
+</tr>
+<tr>
+<td>天冬酰胺</td>
+<td>Asn</td>
+<td>N</td>
+<td>5.41</td>
+</tr>
+<tr>
+<td>谷氨酰胺</td>
+<td>Gln</td>
+<td>Q</td>
+<td>5.65</td>
+</tr>
+</tbody></table>
+<ul>
+<li>极性酸性氨基酸（亲水、负电）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>中文名</th>
+<th>三字母</th>
+<th>单字母</th>
+<th>等电点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>天冬氨酸</td>
+<td>Asp</td>
+<td>D</td>
+<td>2.97</td>
+</tr>
+<tr>
+<td>谷氨酸</td>
+<td>Glu</td>
+<td>E</td>
+<td>3.22</td>
+</tr>
+</tbody></table>
+<ul>
+<li>极性碱性氨基酸（亲水、正电）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>中文名</th>
+<th>三字母</th>
+<th>单字母</th>
+<th>等电点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>赖氨酸</td>
+<td>Lys</td>
+<td>K</td>
+<td>9.74</td>
+</tr>
+<tr>
+<td>精氨酸</td>
+<td>Arg</td>
+<td>R</td>
+<td>10.76</td>
+</tr>
+<tr>
+<td>组氨酸</td>
+<td>His</td>
+<td>H</td>
+<td>7.59</td>
+</tr>
+</tbody></table>
 
         </div>
 
@@ -260,10 +434,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/10/10/Chip-seq/">Chip-seq</a>
             
-            
-            <a class="next" rel="next" href="/2023/10/10/hello-world/">Hello World</a>
+            <a class="next" rel="next" href="/2023/10/12/Protein/">protein</a>
             
         </section>
 
