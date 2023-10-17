@@ -15,7 +15,7 @@
 
 
 
-<title>Hi-C | Notes</title>
+<title>Vue_PageJump | Notes</title>
 
 
 
@@ -187,21 +187,21 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hi-C</h1>
+            <h1 class="post-title">Vue_PageJump</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 17, 2023&nbsp;&nbsp;14:35:35</a>
+                        Date: <a href="#">October 17, 2023&nbsp;&nbsp;16:40:19</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E7%BB%84%E5%AD%A6/">组学</a>
+                                <a href="/categories/Vue/">Vue</a>
                             
                         </span>
                     
@@ -210,43 +210,19 @@
         </header>
 
         <div class="post-content">
-            <h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><p><strong>染色质与染色体关系</strong></p>
-<ul>
-<li>染色质和染色体是同一物质在细胞分裂间期和分裂期的不同形态表现</li>
-<li>染色体出现于分裂期</li>
-<li>染色质出现于间期，呈丝状</li>
-<li><strong>染色体是在细胞分裂时，由染色质高度螺旋、缩短变粗形成的</strong></li>
+            <p><strong>页面跳转实现</strong></p>
+<h2 id="创建路由组件"><a href="#创建路由组件" class="headerlink" title="创建路由组件"></a>创建路由组件</h2><ul>
+<li>在views中创建视图页面</li>
 </ul>
-<p><img src="/2023/10/17/Hi-C/image-20231017150536952.png" alt="image-20231017150536952"></p>
-<h3 id="染色质疆域-Chromosome-Territory"><a href="#染色质疆域-Chromosome-Territory" class="headerlink" title="染色质疆域 Chromosome Territory"></a>染色质疆域 Chromosome Territory</h3><ul>
-<li>似乎就是染色质所在的区域</li>
+<h2 id="配置路由关系"><a href="#配置路由关系" class="headerlink" title="配置路由关系"></a>配置路由关系</h2><ul>
+<li>在router&#x2F;index.js中配置路由关系</li>
 </ul>
-<h3 id="染色质区室-A-B-Compartments"><a href="#染色质区室-A-B-Compartments" class="headerlink" title="染色质区室 A&#x2F;B Compartments"></a>染色质区室 A&#x2F;B Compartments</h3><ul>
-<li><p>整个基因组被分割为两个空间区室，分布标记为 A，B 染色质区，往往区室内互作频繁，而区室间互作较少</p>
-</li>
-<li><p><strong>A compartments：</strong>开放的染色质，表达活跃，基因丰富，具有较高的GC含量，包含用于主动转录的组蛋白标记，通常位于细胞核的内部</p>
-</li>
-<li><p><strong>B compartments：</strong>关闭的染色质，表达不活跃，基因缺乏，结构紧凑，含有基因沉默的组蛋白标志物，位于核的外围。它们主要由LAD组成，包含晚期复制起点</p>
-</li>
+<p><img src="/2023/10/17/Vue-PageJump/image-20231017164706846.png" alt="image-20231017164706846"></p>
+<h2 id="修改模板实现跳转"><a href="#修改模板实现跳转" class="headerlink" title="修改模板实现跳转"></a>修改模板实现跳转</h2><ul>
+<li>配置目标组件中RouterLink</li>
 </ul>
-<h3 id="拓扑结构域-Topologically-associating-Domains"><a href="#拓扑结构域-Topologically-associating-Domains" class="headerlink" title="拓扑结构域 Topologically associating Domains"></a>拓扑结构域 Topologically associating Domains</h3><ul>
-<li>在染色质区室中，互相作用相对频繁的基因组区域，就是拓扑结构域 TAD</li>
-</ul>
-<h3 id="染色质环-Chromatin-loops"><a href="#染色质环-Chromatin-loops" class="headerlink" title="染色质环 Chromatin loops"></a>染色质环 Chromatin loops</h3><ul>
-<li>染色质在空间中形成环状结构，因此相距很远的染色质区域也可以在三维空间中聚集在一起</li>
-</ul>
-<h2 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h2><p><img src="/2023/10/17/Hi-C/image-20231017150701541.png" alt="image-20231017150701541"></p>
-<ul>
-<li>将三维基因组甲醛交联固定，在空间上相互作用的染色质片段之间产生共价键</li>
-<li>用内切酶进行酶切，产生的粘性末端被核苷酸填充一部分进行修复，并且被标记生物素</li>
-<li>然后进行连接，连接后去除蛋白并打断成小片段</li>
-<li>用磁珠捕获带生物素的片段进行测序</li>
-</ul>
-<p><img src="/2023/10/17/Hi-C/image-20231017155434334.png" alt="image-20231017155434334"></p>
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://dovetailgenomics.com/products/intro-to-hi-c/">Intro to Hi-C - Dovetail Genomics</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ed4y1W7Av/?spm_id_from=333.337.search-card.all.click">图理解</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2adf84959b01">三维基因组（Hi-C）的原理以及应用 - 简书 (jianshu.com)</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.jove.com/cn/v/1869/hi-c-a-method-to-study-the-three-dimensional-architecture-of-genomes">Hi-C: A Method to Study the Three-dimensional Architecture of Genomes. | Protocol (jove.com)</a></p>
+<p><img src="/2023/10/17/Vue-PageJump/image-20231017164928316.png" alt="image-20231017164928316"></p>
+<hr>
 
         </div>
 
@@ -266,10 +242,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/10/17/Vue-PageJump/">Vue_PageJump</a>
             
-            
-            <a class="next" rel="next" href="/2023/10/12/AminoAcid/">AminoAcid</a>
+            <a class="next" rel="next" href="/2023/10/17/Hi-C/">Hi-C</a>
             
         </section>
 
