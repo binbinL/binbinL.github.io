@@ -15,7 +15,7 @@
 
 
 
-<title>Chip-seq | Notes</title>
+<title>Hi-C | Notes</title>
 
 
 
@@ -187,14 +187,14 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Chip-seq</h1>
+            <h1 class="post-title">Hi-C</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 10, 2023&nbsp;&nbsp;19:30:25</a>
+                        Date: <a href="#">October 17, 2023&nbsp;&nbsp;14:35:35</a>
                         </span>
                     
                     
@@ -210,65 +210,43 @@
         </header>
 
         <div class="post-content">
-            <h3 id="Chip-seq"><a href="#Chip-seq" class="headerlink" title="Chip seq"></a>Chip seq</h3><ul>
-<li><p><strong>表观遗传</strong>：DNA序列不发生改变，但基因的表达却发生了可遗传的改变</p>
+            <h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><p><strong>染色质与染色体关系</strong></p>
 <ul>
-<li>组蛋白修饰</li>
-<li>DNA修饰，如DNA甲基化</li>
-<li>染色质构象改变</li>
+<li>染色质和染色体是同一物质在细胞分裂间期和分裂期的不同形态表现</li>
+<li>染色体出现于分裂期</li>
+<li>染色质出现于间期，呈丝状</li>
+<li><strong>染色体是在细胞分裂时，由染色质高度螺旋、缩短变粗形成的</strong></li>
 </ul>
+<p><img src="/2023/10/17/Hi-C/image-20231017150536952.png" alt="image-20231017150536952"></p>
+<h3 id="染色质疆域-Chromosome-Territory"><a href="#染色质疆域-Chromosome-Territory" class="headerlink" title="染色质疆域 Chromosome Territory"></a>染色质疆域 Chromosome Territory</h3><ul>
+<li>似乎就是染色质所在的区域</li>
+</ul>
+<h3 id="染色质区室-A-B-Compartments"><a href="#染色质区室-A-B-Compartments" class="headerlink" title="染色质区室 A&#x2F;B Compartments"></a>染色质区室 A&#x2F;B Compartments</h3><ul>
+<li><p>整个基因组被分割为两个空间区室，分布标记为 A，B 染色质区，往往区室内互作频繁，而区室间互作较少</p>
 </li>
-<li><p><strong>染色质免疫共沉淀</strong></p>
-<ul>
-<li>用于确定蛋白质和DNA相互作用情况，常用于转录因子结合位点和组蛋白修饰位点的研究（TSS上下游）</li>
-</ul>
+<li><p><strong>A compartments：</strong>开放的染色质，表达活跃，基因丰富，具有较高的GC含量，包含用于主动转录的组蛋白标记，通常位于细胞核的内部</p>
 </li>
-</ul>
-<p><strong>应用场景</strong></p>
-<ul>
-<li>确定转录因子在整个基因组上的结合位点，富集的信息进一步分析转录因子的结合motif、作用通路等</li>
-<li>确定组蛋白修饰情况，检查不同组蛋白之间结合相同的基因在TSS上的位置，这样可以看出缺少某一类组蛋白之后，基因是否表达，验证这个组蛋白具有的功能和意义</li>
-<li>比较组蛋白亚基之间在基因组上结合的基因的包含关系</li>
-<li>利用ChIP-seq也可以得到核小体定位图谱</li>
-<li>可研究DNA甲基化情况</li>
-</ul>
-<h4 id="TF-Chip"><a href="#TF-Chip" class="headerlink" title="TF Chip"></a>TF Chip</h4><ul>
-<li><p>转录因子是能够结合在某基因上游5’端特异序列的蛋白质，它作为反式作用因子，与真核基因的顺式作用元件如启动子、增强子等发生特异性相互作用，从而激活或者抑制基因的转录</p>
-<ul>
-<li>“顺式元件”与被调控基因在同一条DNA上的特定序列。包括 启动子、调控序列、增强子和沉默子。</li>
-<li>“反式因子”主要是些调节基因表达的蛋白(应该还包括RNA、RNP之类的因子)，这些蛋白的基因与顺式元件不在同一DNA上。</li>
-</ul>
-</li>
-<li><p><strong>用来确定靶蛋白（转录因子）是否结合特定基因组区域（启动子或其他DNA结合位点）</strong></p>
+<li><p><strong>B compartments：</strong>关闭的染色质，表达不活跃，基因缺乏，结构紧凑，含有基因沉默的组蛋白标志物，位于核的外围。它们主要由LAD组成，包含晚期复制起点</p>
 </li>
 </ul>
-<h4 id="Histone-Chip"><a href="#Histone-Chip" class="headerlink" title="Histone Chip"></a>Histone Chip</h4><ul>
-<li>细胞核中的染色体是高度压缩的，而折叠时DNA缠绕的就是组蛋白。</li>
-<li>为了方便研究，将一个组蛋白和其附近 147bp DNA片段，叫一个核小体。</li>
-<li><strong>组蛋白八聚体 &#x3D; 2个H2B + 2个H2A + 2个H3 + 2个H4</strong></li>
+<h3 id="拓扑结构域-Topologically-associating-Domains"><a href="#拓扑结构域-Topologically-associating-Domains" class="headerlink" title="拓扑结构域 Topologically associating Domains"></a>拓扑结构域 Topologically associating Domains</h3><ul>
+<li>在染色质区室中，互相作用相对频繁的基因组区域，就是拓扑结构域 TAD</li>
 </ul>
-<p><img src="/2023/10/10/Chip-seq/image-20231010193301347.png" alt="image-20231010193301347"></p>
+<h3 id="染色质环-Chromatin-loops"><a href="#染色质环-Chromatin-loops" class="headerlink" title="染色质环 Chromatin loops"></a>染色质环 Chromatin loops</h3><ul>
+<li>染色质在空间中形成环状结构，因此相距很远的染色质区域也可以在三维空间中聚集在一起</li>
+</ul>
+<h2 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h2><p><img src="/2023/10/17/Hi-C/image-20231017150701541.png" alt="image-20231017150701541"></p>
 <ul>
-<li>每种组蛋白结构都会伸出来一小段“线头”，这是蛋白质的N端，也叫尾巴(tail)，组蛋白修饰就是在这个尾巴上进行的。</li>
-<li>通过组蛋白特异性抗体，将带有特定修饰的组蛋白-DNA复合物沉淀下来，从而获取组蛋白结合的DNA，然后通过测序，可获得组蛋白在染色体上的分布情况，从而确定组蛋白修饰相关的特定位点。</li>
+<li>将三维基因组甲醛交联固定，在空间上相互作用的染色质片段之间产生共价键</li>
+<li>用内切酶进行酶切，产生的粘性末端被核苷酸填充一部分进行修复，并且被标记生物素</li>
+<li>然后进行连接，连接后去除蛋白并打断成小片段</li>
+<li>用磁珠捕获带生物素的片段进行测序</li>
 </ul>
-<h4 id="流程原理"><a href="#流程原理" class="headerlink" title="流程原理"></a>流程原理</h4><ul>
-<li>使用甲醛将目标蛋白与染色质交联固定起来<ul>
-<li>使距离近的分子间的氢键变成稳定的共价键</li>
-</ul>
-</li>
-<li>通过超声打断DNA为一定长度的小片段</li>
-<li>添加与目标蛋白特异的抗体，该抗体与目标蛋白形成免疫沉淀免疫结合复合体</li>
-<li>去交联，纯化DNA，得到染色质免疫沉淀的DNA样本，测序</li>
-</ul>
-<h4 id="分析（还没太懂）"><a href="#分析（还没太懂）" class="headerlink" title="分析（还没太懂）"></a>分析（还没太懂）</h4><ul>
-<li>QC</li>
-<li>序列对比</li>
-<li>Call Peak</li>
-<li>Peak annotation</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/289136747">图解表观遗传学 | 组蛋白修饰 - 知乎 (zhihu.com)</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1a8411a7kr/?vd_source=2724e171abe917ee83ac28bba8b35c31">CHIP-seq原理和分析流程精讲_哔哩哔哩_bilibili</a></p>
+<p><img src="/2023/10/17/Hi-C/image-20231017155434334.png" alt="image-20231017155434334"></p>
+<p><a target="_blank" rel="noopener" href="https://dovetailgenomics.com/products/intro-to-hi-c/">Intro to Hi-C - Dovetail Genomics</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ed4y1W7Av/?spm_id_from=333.337.search-card.all.click">图理解</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2adf84959b01">三维基因组（Hi-C）的原理以及应用 - 简书 (jianshu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jove.com/cn/v/1869/hi-c-a-method-to-study-the-three-dimensional-architecture-of-genomes">Hi-C: A Method to Study the Three-dimensional Architecture of Genomes. | Protocol (jove.com)</a></p>
 
         </div>
 
@@ -288,10 +266,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/10/10/conda-op-manual/">conda op_manual</a>
             
-            
-            <a class="next" rel="next" href="/2023/10/10/GeneEnrichment/">GeneEnrichment</a>
+            <a class="next" rel="next" href="/2023/10/12/AminoAcid/">AminoAcid</a>
             
         </section>
 
