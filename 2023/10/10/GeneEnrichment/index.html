@@ -205,7 +205,7 @@
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E5%88%86%E6%9E%90/">分析</a>
+                                <a href="/categories/%E7%BB%84%E5%AD%A6/">组学</a>
                             
                         </span>
                     
@@ -214,22 +214,21 @@
         </header>
 
         <div class="post-content">
-            <h3 id="基因富集"><a href="#基因富集" class="headerlink" title="基因富集"></a>基因富集</h3><ul>
-<li><p>研究差异基因会和什么生物学功能或者什么生物学过程或者通路相关</p>
-</li>
-<li><p>Kegg and Go：</p>
-<ul>
-<li><p>Input是差异基因</p>
-</li>
-<li><p>cc：细胞组分</p>
-</li>
-<li><p>bp：生物学过程</p>
-</li>
-<li><p>mf：分子功能</p>
-</li>
+            <h3 id="Go"><a href="#Go" class="headerlink" title="Go"></a>Go</h3><ul>
+<li>GO数据库是分别从<strong>细胞组分</strong>（cellular component, CC）、<strong>分子功能</strong>（molecular function, MF）、<strong>生物过程</strong>（biological process, BP）对基因产物进行了标准化描述。</li>
+<li>GO富集分析是对基因进行简单注释，进而了解<strong>差异基因富集在哪些生物学功能、途径或者细胞定位</strong>。</li>
+<li>GO是<strong>功能注释</strong>，即每个基因可能参与哪些pathway terms 或者 GO terms。GO分析得到的是一条条的线路（GO term），每一个线路里面有自己的基因集，且彼此之间没有任何联系。</li>
 </ul>
+<h3 id="KEGG"><a href="#KEGG" class="headerlink" title="KEGG"></a>KEGG</h3><ul>
+<li>呈网状，是由前期研究发现的一条条的代谢通路组成的网状的结构，KEGG也有基因集，但<strong>更侧重于代谢通路</strong>的研究。</li>
+<li>KEGG是<strong>功能富集</strong>，即基因（或多个基因）可能显著的集中在哪些通路上的富集。</li>
+</ul>
+<h3 id="GSEA"><a href="#GSEA" class="headerlink" title="GSEA"></a>GSEA</h3><ul>
+<li><p>GO、KEGG只需要输入基因列表，只侧重于比较两组间的差异基因表达情况，集中关注少数几个显著变化的基因，这容易漏掉差异表达不显著却有重要生物学意义的基因，忽略一些基因的生物特性、基因调控网络之间的关系及基因功能和意义等有价值的信息。另外这两种分析需要人为划定阈值来判断是否富集到某一通路，这就掺杂了很多人为的因素。</p>
 </li>
-<li><p>GSEA：</p>
+<li><p>GSEA基于全部基因数据表达量数据进行分析，而且不需要指定明确的差异基因阈值，算法会根据实际数据的整体趋势进行分析，即使是没有先验经验</p>
+</li>
+<li><p>GSEA分析</p>
 <ul>
 <li><p>Input是整个基因表达矩阵</p>
 </li>
@@ -244,6 +243,7 @@
 </ul>
 </li>
 </ul>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/135410211">GO分析和KEGG分析都是啥？ - 知乎 (zhihu.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ma411G7QB/?spm_id_from=333.337.search-card.all.click">GSEA(Gene set enrichment analysis, 基因集富集分析)图怎么看？_哔哩哔哩_bilibili</a></p>
 
         </div>
@@ -254,6 +254,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/%E5%9F%BA%E5%9B%A0%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90/"># 基因富集分析</a>
+                    
+                        
                 </span>
             </div>
             <div>
