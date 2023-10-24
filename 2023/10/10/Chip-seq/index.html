@@ -265,11 +265,34 @@
 <li>添加与目标蛋白特异的抗体，该抗体与目标蛋白形成免疫沉淀免疫结合复合体</li>
 <li>去交联，纯化DNA，得到染色质免疫沉淀的DNA样本，测序</li>
 </ul>
-<h4 id="分析（还没太懂）"><a href="#分析（还没太懂）" class="headerlink" title="分析（还没太懂）"></a>分析（还没太懂）</h4><ul>
+<p><img src="/2023/10/10/Chip-seq/2018-10-26-01.jpeg" alt="Chip-seq分析"></p>
+<h4 id="一般流程"><a href="#一般流程" class="headerlink" title="一般流程"></a>一般流程</h4><ul>
 <li>QC</li>
-<li>序列对比</li>
-<li>Call Peak</li>
-<li>Peak annotation</li>
+<li>序列对比<ul>
+<li>BWA、Bowties2</li>
+</ul>
+</li>
+<li>Peak Calling<ul>
+<li>peaks是reads信号比较强的区域，也就是找到的转录因子或者组蛋白修饰最有可能结合的地方</li>
+<li>MACS2</li>
+</ul>
+</li>
+<li>Peak Annotation<ul>
+<li>首先看peaks在基因组的哪一个区段，看看它们在各种基因组区域(基因上下游，5,3端UTR，启动子，内含子区)分布情况</li>
+</ul>
+</li>
+<li>motif分析<ul>
+<li>转录因子等与DNA序列的结合位点具有一定的的特征，这种序列特征称为<strong>Motif</strong></li>
+<li><strong>Motif分析</strong>是一种用于识别和分析DNA、RNA或蛋白质序列中 重复出现的模式或序列片段 的方法。 这些模式被称为motif，它们可能具有特定的生物学功能，如结合到特定的转录因子、调控基因表达或参与蛋白质相互作用等。 可以帮助了解基因家族成员之间的关系，推断它们的功能和调控机制</li>
+<li>表观组学中，无论是转录因子结合或是DNA、RNA甲基化修饰，他们都存在一定<strong>碱基偏好性</strong>，即结合&#x2F;修饰位点并不是随机现象，而是出现在某些特定的碱基组合中，利用motif分析可以挖掘其修饰&#x2F;结合偏好，进而锁定相关基因</li>
+<li>meme</li>
+</ul>
+</li>
+<li>高阶分析<ul>
+<li>peaks差异分析</li>
+<li>peaks对应基因的富集分析</li>
+</ul>
+</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/289136747">图解表观遗传学 | 组蛋白修饰 - 知乎 (zhihu.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1a8411a7kr/?vd_source=2724e171abe917ee83ac28bba8b35c31">CHIP-seq原理和分析流程精讲_哔哩哔哩_bilibili</a></p>
@@ -282,6 +305,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/Chip-seq/"># Chip-seq</a>
+                    
+                        
                 </span>
             </div>
             <div>

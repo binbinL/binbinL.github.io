@@ -15,7 +15,7 @@
 
 
 
-<title>Hello World | Notes</title>
+<title>生信数据格式 | Notes</title>
 
 
 
@@ -191,35 +191,70 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">生信数据格式</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 10, 2023&nbsp;&nbsp;16:01:32</a>
+                        Date: <a href="#">October 24, 2023&nbsp;&nbsp;19:32:49</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/NGS/">NGS</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+            <h2 id="sra-and-fastq"><a href="#sra-and-fastq" class="headerlink" title="sra and fastq"></a>sra and fastq</h2><ul>
+<li>sra是把双端测序的2个文件合成了1个，而fq文件是2个</li>
+<li>后续很多分析仪fastq格式文件进行，所以一般下载下来sra都要转换为fastq(可以用软件fastq-dump）</li>
+<li>fastq文件格式是用来存储测序文件的，它是含有quality的fasta文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@ST-E00126:128:HJFLHCCXX:2:1101:7405:1133</span><br><span class="line">TTGCAAAAAATTTCTCTCATTCTGTAGGTTGCCTGTTCACTCTGATGATAGTTTGTTTTGG</span><br><span class="line">+</span><br><span class="line">FFKKKFKKFKF&lt;KK&lt;F,AFKKKKK7FFK77&lt;FKK,&lt;F7K,,7AF&lt;FF7FKK7AA,7&lt;FA,,</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<ul>
+<li>fastq文件以4行为1个单位</li>
+<li>第一行是@开头的解释信息，第主要储存序列测序时的坐标等信息</li>
+<li>第二行是序列reads</li>
+<li>第三行+开头，可以储存一些附加信息，一般是空的</li>
+<li>第四行是对应的测序质量ASCII码，可以理解为对应位置碱基的质量值</li>
+</ul>
+<h2 id="fasta-and-gff、gtf"><a href="#fasta-and-gff、gtf" class="headerlink" title="fasta and gff、gtf"></a>fasta and gff、gtf</h2><ul>
+<li>FASTA文件主要用于存储生物的序列文件，例如基因组，基因的核酸序列以及氨基酸等</li>
+<li>简单理解就是，fq文件是测序后直接得到的，而fa文件是用各种软件处理了fq文件后得到的</li>
+<li>与fa文件配套的就是注释文件gtf&#x2F;gff，注释文件给出了外显子、内含子、基因等的位置信息</li>
+<li>gff主要用来注释基因组，gtf主要用来注释基因，2种文件格式可相互转换</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;gi|556503834|ref|NC_000913.3|:190-255 Escherichia coli str. K-12 substr. MG1655, complete genome</span><br><span class="line">ATGAAACGCATTAGCACCACCATTACCACCACCATCACCATTACCACAGGTAACGGTGCGGGCTGA</span><br><span class="line">&gt;gi|556503834|ref|NC_000913.3|:337-2799 Escherichia coli str. K-12 substr. MG1655, complete genome</span><br><span class="line">ATGCGAGTGTTGAAGTTCGGCGGTACATCAGTGGCAAATGCAGAACGTTTTCTGCGTGTTGCCGATATTC</span><br><span class="line">TGGAAAGCAATGCCAGGCAGGGGCAGGTGGCCACCGTCCTCTCTGCCCCCGCCAAAATCACCAACCACCT</span><br><span class="line">GGTGGCGATGATTGAAAAAACCATTAGCGGCCAGGATGCTTTACCCAATATCAGCGATGCCGAACGTATT</span><br><span class="line">TTTGCCGAACTTTTGACGGGACTCGCCGCCGCCCAGCCGGGGTTCCCGCTGGCGCAATTGAAAACTTTCG</span><br><span class="line">TCGATCAGGAATTTGCCCAAATAAAACATGTCCTGCATGGCATTAGTTTGTTGGGGCAGTGCCCGGATAG</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一行是由大于号”&gt;”开头的任意文字说明，用于序列标记，为了保证后续分析软件能够区分每条序列，单个序列的标识必须是唯一的，序列ID部分可以包含注释信息</li>
+<li>从第二行开始为序列本身，只允许使用既定的核苷酸或氨基酸编码符号</li>
+<li>序列部分可以在一行，也可以分成多行</li>
+</ul>
+<h2 id="sam-and-bam"><a href="#sam-and-bam" class="headerlink" title="sam and bam"></a>sam and bam</h2><ul>
+<li>都是序列比对结果，是储存大型核苷酸比对文件的通用格式</li>
+<li>BAM文件是SAM文件的压缩形式，SAM文件的内容在BAM文件中被压缩为二进制形式储存，以节约储存空间</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SRR3494880.3316692      0       chr1    3000357 34      50M     *       0       0       ATTATAGTACAGTCCCTATGCCCTCTAGTTAGTCTGGCTAAGGGTTTATC @C@FFFFDHFHHFHIJIBHHHIIHIGIIFHIIHIIJIIIGGGGIGGIHIG      AS:i:100        XS:i:76 XN:i:0  XM:i:0  XO:i:0  XG:i:0     NM:i:0  MD:Z:50 YT:Z:UU</span><br><span class="line">SRR3494880.15751310     16      chr1    3000564 40      50M     *       0       0       AGATTTGCTGTCAGGCTGCTAGTGTATACTCTAGTTTCCTTTTGGAGGCA CHIIGEIIGHJJIIGHJIHHGHEIHDFCHGEJJIGGHGHHHHFFFFFCCC      AS:i:100        XS:i:53 XN:i:0  XM:i:0  XO:i:0  XG:i:0     NM:i:0  MD:Z:50 YT:Z:UU</span><br><span class="line">SRR3494880.6903632      16      chr1    3000596 37      50M     *       0       0       AGTTTCCTTTTGGAGGCACACAGGCCTGTGAGTTTTACTCTTAGGACTGC IJIJIJJJJJJIGHIHHFGGJJJJJJJJIJJJJJIHFHHHHHFFFFFCCC      AS:i:100        XS:i:69 XN:i:0  XM:i:0  XO:i:0  XG:i:0     NM:i:0  MD:Z:50 YT:Z:UU</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<ul>
+<li>SAM格式的主要内容可分为三部分：<ul>
+<li>header信息，包括SAM文件的部分信息和染色体位置索引</li>
+<li>碱基序列</li>
+<li>read的质量打分</li>
+</ul>
+</li>
+</ul>
 
         </div>
 
@@ -229,6 +264,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/%E7%94%9F%E4%BF%A1%E6%95%B0%E6%8D%AE/"># 生信数据</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -239,8 +278,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/10/10/GeneEnrichment/">GeneEnrichment</a>
             
+            <a class="next" rel="next" href="/2023/10/21/RNA-seq/">RNA-seq</a>
             
         </section>
 
