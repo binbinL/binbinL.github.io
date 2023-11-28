@@ -15,7 +15,7 @@
 
 
 
-<title>Chip-seq | Notes</title>
+<title>Spatial transcriptomics | Notes</title>
 
 
 
@@ -191,14 +191,14 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Chip-seq</h1>
+            <h1 class="post-title">Spatial transcriptomics</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 10, 2023&nbsp;&nbsp;19:30:25</a>
+                        Date: <a href="#">October 28, 2023&nbsp;&nbsp;10:07:41</a>
                         </span>
                     
                     
@@ -214,88 +214,43 @@
         </header>
 
         <div class="post-content">
-            <h3 id="Chip-seq"><a href="#Chip-seq" class="headerlink" title="Chip seq"></a>Chip seq</h3><ul>
-<li><p><strong>表观遗传</strong>：DNA序列不发生改变，但基因的表达却发生了可遗传的改变</p>
+            <p>“ a common goal in ST analysis is to connect and integrate information from both gene expression and cellular or transcript locations “</p>
+<h2 id="Spatial-transcriptomic-technologies"><a href="#Spatial-transcriptomic-technologies" class="headerlink" title="Spatial transcriptomic technologies"></a>Spatial transcriptomic technologies</h2><ul>
+<li>从原理分<ul>
+<li>imaging-based spatial transcriptomics technologies<ul>
+<li>FISH</li>
+<li>ISS</li>
+</ul>
+</li>
+<li>sequencing-based spatial transcriptomics technologies</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2023/10/28/Spatial-transcriptomics/image-20231028101151264.png" alt="image-20231028101151264"></p>
 <ul>
-<li>组蛋白修饰</li>
-<li>DNA修饰，如DNA甲基化</li>
-<li>染色质构象改变</li>
+<li>从分辨率分<ul>
+<li>Spots</li>
+<li>Single-cell</li>
+<li>Subcellular</li>
 </ul>
 </li>
-<li><p><strong>染色质免疫共沉淀</strong></p>
+</ul>
+<p><img src="/2023/10/28/Spatial-transcriptomics/image-20231103214523481.png" alt="image-20231103214523481"></p>
+<h3 id="Identification-of-cell-types-from-ST-data"><a href="#Identification-of-cell-types-from-ST-data" class="headerlink" title="Identification of cell types from ST data"></a>Identification of cell types from ST data</h3><p>Cell type identification and localization is probably the most basic task for ST data analysis.</p>
 <ul>
-<li>用于确定蛋白质和DNA相互作用情况，常用于转录因子结合位点和组蛋白修饰位点的研究（TSS上下游）</li>
+<li>unsupervised clustering combined with manual or automatic annotation is a common approach to identify cell types in an unbiased manner</li>
 </ul>
-</li>
-</ul>
-<p><strong>应用场景</strong></p>
+<h3 id="Characterizing-spatial-patterns-of-transcriptomic-profiles"><a href="#Characterizing-spatial-patterns-of-transcriptomic-profiles" class="headerlink" title="Characterizing spatial patterns of transcriptomic profiles"></a>Characterizing spatial patterns of transcriptomic profiles</h3><h3 id="Subcellular-structure-analysis"><a href="#Subcellular-structure-analysis" class="headerlink" title="Subcellular structure analysis"></a>Subcellular structure analysis</h3><h3 id="Understanding-how-cells-communicate-with-the-tissue-environment"><a href="#Understanding-how-cells-communicate-with-the-tissue-environment" class="headerlink" title="Understanding how cells communicate with the tissue environment"></a>Understanding how cells communicate with the tissue environment</h3><h2 id="整体思路"><a href="#整体思路" class="headerlink" title="整体思路"></a>整体思路</h2><p><img src="/2023/10/28/Spatial-transcriptomics/image-20231028113701500.png" alt="image-20231028113701500"></p>
+<p><img src="/2023/10/28/Spatial-transcriptomics/image-20231107171210919.png" alt="image-20231107171210919"></p>
+<p>基于图像的分析，如细胞分割和形态定量，可用于研究组织选定部分中的细胞复杂性。</p>
+<p>基于基因表达的分析包括几种方法，如聚类，空间网络构建和细胞类型富集，以可视化基因表达模式。</p>
 <ul>
-<li>确定转录因子在整个基因组上的结合位点，富集的信息进一步分析转录因子的结合motif、作用通路等</li>
-<li>确定组蛋白修饰情况，检查不同组蛋白之间结合相同的基因在TSS上的位置，这样可以看出缺少某一类组蛋白之后，基因是否表达，验证这个组蛋白具有的功能和意义</li>
-<li>比较组蛋白亚基之间在基因组上结合的基因的包含关系</li>
-<li>利用ChIP-seq也可以得到核小体定位图谱</li>
-<li>可研究DNA甲基化情况</li>
+<li>降维聚类</li>
+<li>表达差异分析</li>
+<li>结合功能分析</li>
 </ul>
-<h4 id="TF-Chip"><a href="#TF-Chip" class="headerlink" title="TF Chip"></a>TF Chip</h4><ul>
-<li><p>转录因子是能够结合在某基因上游5’端特异序列的蛋白质，它作为反式作用因子，与真核基因的顺式作用元件如启动子、增强子等发生特异性相互作用，从而激活或者抑制基因的转录</p>
-<ul>
-<li>“顺式元件”与被调控基因在同一条DNA上的特定序列。包括 启动子、调控序列、增强子和沉默子。</li>
-<li>“反式因子”主要是些调节基因表达的蛋白(应该还包括RNA、RNP之类的因子)，这些蛋白的基因与顺式元件不在同一DNA上。</li>
-</ul>
-</li>
-<li><p><strong>用来确定靶蛋白（转录因子）是否结合特定基因组区域（启动子或其他DNA结合位点）</strong></p>
-</li>
-</ul>
-<h4 id="Histone-Chip"><a href="#Histone-Chip" class="headerlink" title="Histone Chip"></a>Histone Chip</h4><ul>
-<li>细胞核中的染色体是高度压缩的，而折叠时DNA缠绕的就是组蛋白。</li>
-<li>为了方便研究，将一个组蛋白和其附近 147bp DNA片段，叫一个核小体。</li>
-<li><strong>组蛋白八聚体 &#x3D; 2个H2B + 2个H2A + 2个H3 + 2个H4</strong></li>
-</ul>
-<p><img src="/2023/10/10/Chip-seq/image-20231010193301347.png" alt="image-20231010193301347"></p>
-<ul>
-<li>每种组蛋白结构都会伸出来一小段“线头”，这是蛋白质的N端，也叫尾巴(tail)，组蛋白修饰就是在这个尾巴上进行的。</li>
-<li>通过组蛋白特异性抗体，将带有特定修饰的组蛋白-DNA复合物沉淀下来，从而获取组蛋白结合的DNA，然后通过测序，可获得组蛋白在染色体上的分布情况，从而确定组蛋白修饰相关的特定位点。</li>
-</ul>
-<h4 id="流程原理"><a href="#流程原理" class="headerlink" title="流程原理"></a>流程原理</h4><ul>
-<li>使用甲醛将目标蛋白与染色质交联固定起来<ul>
-<li>使距离近的分子间的氢键变成稳定的共价键</li>
-</ul>
-</li>
-<li>通过超声打断DNA为一定长度的小片段</li>
-<li>添加与目标蛋白特异的抗体，该抗体与目标蛋白形成免疫沉淀免疫结合复合体</li>
-<li>去交联，纯化DNA，得到染色质免疫沉淀的DNA样本，测序</li>
-</ul>
-<p><img src="/2023/10/10/Chip-seq/2018-10-26-01.jpeg" alt="Chip-seq分析"></p>
-<h4 id="一般流程"><a href="#一般流程" class="headerlink" title="一般流程"></a>一般流程</h4><ul>
-<li>QC</li>
-<li>Alignment<ul>
-<li>BWA、Bowties2</li>
-</ul>
-</li>
-<li>Peak Calling<ul>
-<li>peaks是reads信号比较强的区域，也就是找到的转录因子或者组蛋白修饰最有可能结合的地方</li>
-<li>MACS2</li>
-</ul>
-</li>
-<li>Peak Annotation<ul>
-<li>首先看peaks在基因组的哪一个区段，看看它们在各种基因组区域(基因上下游，5,3端UTR，启动子，内含子区)分布情况</li>
-</ul>
-</li>
-<li>motif分析<ul>
-<li>转录因子等与DNA序列的结合位点具有一定的的特征，这种序列特征称为<strong>Motif</strong></li>
-<li><strong>Motif分析</strong>是一种用于识别和分析DNA、RNA或蛋白质序列中 重复出现的模式或序列片段 的方法。 这些模式被称为motif，它们可能具有特定的生物学功能，如结合到特定的转录因子、调控基因表达或参与蛋白质相互作用等。 可以帮助了解基因家族成员之间的关系，推断它们的功能和调控机制</li>
-<li>表观组学中，无论是转录因子结合或是DNA、RNA甲基化修饰，他们都存在一定<strong>碱基偏好性</strong>，即结合&#x2F;修饰位点并不是随机现象，而是出现在某些特定的碱基组合中，利用motif分析可以挖掘其修饰&#x2F;结合偏好，进而锁定相关基因</li>
-<li>meme</li>
-</ul>
-</li>
-<li>高阶分析<ul>
-<li>peaks差异分析</li>
-<li>peaks对应基因的富集分析</li>
-</ul>
-</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/289136747">图解表观遗传学 | 组蛋白修饰 - 知乎 (zhihu.com)</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1a8411a7kr/?vd_source=2724e171abe917ee83ac28bba8b35c31">CHIP-seq原理和分析流程精讲_哔哩哔哩_bilibili</a></p>
+<h2 id="RF"><a href="#RF" class="headerlink" title="RF"></a>RF</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tt4y1C7hF/?spm_id_from=333.788.recommend_more_video.0&vd_source=2724e171abe917ee83ac28bba8b35c31">10x Visium空间转录组分析思路_哔哩哔哩_bilibili</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1jS4y1r78d/?spm_id_from=333.788&vd_source=2724e171abe917ee83ac28bba8b35c31">2022最新空间转录组（spatial transcriptomics）数据分析指南_哔哩哔哩_bilibili</a></p>
 
         </div>
 
@@ -306,7 +261,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Chip-seq/"># Chip-seq</a>
+                        <a href="/tags/ST/"># ST</a>
                     
                         
                 </span>
@@ -319,10 +274,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/10/10/conda-op-manual/">conda op_manual</a>
+                <a class="prev" rel="prev" href="/2023/11/02/Diffusion-Model/">Diffusion Model</a>
             
             
-            <a class="next" rel="next" href="/2023/10/10/GeneEnrichment/">GeneEnrichment</a>
+            <a class="next" rel="next" href="/2023/10/24/%E7%94%9F%E4%BF%A1%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/">生信数据格式</a>
             
         </section>
 

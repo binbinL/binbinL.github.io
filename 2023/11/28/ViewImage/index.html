@@ -15,7 +15,7 @@
 
 
 
-<title>conda op_manual | Notes</title>
+<title>ViewImage | Notes</title>
 
 
 
@@ -129,14 +129,14 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">conda op_manual</h1>
+            <h1 class="post-title">ViewImage</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 10, 2023&nbsp;&nbsp;19:45:55</a>
+                        Date: <a href="#">November 28, 2023&nbsp;&nbsp;8:54:32</a>
                         </span>
                     
                     
@@ -152,26 +152,14 @@
         </header>
 
         <div class="post-content">
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">常用命令</span><br><span class="line">conda env <span class="built_in">list</span></span><br><span class="line">conda activate envname</span><br><span class="line"></span><br><span class="line">conda create -n envname python=x.x</span><br><span class="line">conda remove -n envname --<span class="built_in">all</span></span><br></pre></td></tr></table></figure>
+            <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">from mpl_toolkits.axes_grid1 import ImageGrid</span><br><span class="line">%matplotlib inline #jupyter中使用，需要这一行</span><br><span class="line">import os</span><br><span class="line">import cv2</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>遇到过pip乱跑的情况……故修改对应的配置文件</li>
-</ul>
-<p>创建完成后，修改配置文件</p>
-<p>path：<code>D:\Anaconda\envs\pybiodata\Lib\site.py</code></p>
-<p>补全对应的USER_SITE 和 USER_BASE</p>
-<p>该路径为pip的默认安装地址</p>
-<p><img src="/2023/10/10/conda-op-manual/image-20231010195017612.png" alt="image-20231010195017612"></p>
-<ul>
-<li>查看当前python位置和pip的位置</li>
-</ul>
-<p><img src="/2023/10/10/conda-op-manual/image-20231010195127930.png" alt="image-20231010195127930"></p>
-<ul>
-<li>换源（condarc.txt文件）</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - https://mirrors.aliyun.com/anaconda/pkgs/main/</span><br><span class="line">  - https://mirrors.aliyun.com/anaconda/cloud/conda-forge/</span><br><span class="line">  - https://mirrors.aliyun.com/anaconda/cloud/bioconda/</span><br><span class="line">show_channel_urls: true</span><br><span class="line"></span><br><span class="line">ssl_verify: false</span><br><span class="line">report_errors: true</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#调整</span><br><span class="line">path = &#x27;/data/lwb/data/HPA/train/mix/pos/&#x27;</span><br><span class="line">N = 49</span><br><span class="line">row = 7</span><br><span class="line">col = 7</span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/628870519">2023年最新conda和pip国内镜像源 - 知乎 (zhihu.com)</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">img = []</span><br><span class="line">for i in os.listdir(path)[:N]:</span><br><span class="line">    img_path = os.path.join(path,i)</span><br><span class="line">    img_bgr = cv2.imread(img_path)</span><br><span class="line">    img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)</span><br><span class="line">    img.append(img_rgb)</span><br><span class="line">len(img)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(10, 10))</span><br><span class="line">grid = ImageGrid(fig, 111,  # 类似绘制子图 subplot(111)</span><br><span class="line">                 nrows_ncols=(row, col),  # 创建 row 行 col 列的 axes 网格</span><br><span class="line">                 axes_pad=0.05,  # 网格间距</span><br><span class="line">                 share_all=True</span><br><span class="line">                 )</span><br><span class="line"></span><br><span class="line"># 遍历每张图像</span><br><span class="line">for ax, im in zip(grid, img):</span><br><span class="line">    ax.imshow(im)</span><br><span class="line">    ax.axis(&#x27;off&#x27;)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 
         </div>
 
@@ -182,7 +170,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/conda/"># conda</a>
+                        <a href="/tags/Images/"># Images</a>
                     
                         
                 </span>
@@ -195,10 +183,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/10/11/%E9%9B%B6%E7%A2%8E%E7%9A%84%E7%82%B9/">零碎的点</a>
             
-            
-            <a class="next" rel="next" href="/2023/10/10/Chip-seq/">Chip-seq</a>
+            <a class="next" rel="next" href="/2023/11/14/Pandas/">Pandas</a>
             
         </section>
 
