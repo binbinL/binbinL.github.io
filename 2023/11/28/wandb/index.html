@@ -15,7 +15,7 @@
 
 
 
-<title>ViewImage | Notes</title>
+<title>wandb | Notes</title>
 
 
 
@@ -125,18 +125,80 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">ViewImage</h1>
+            <h1 class="post-title">wandb</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">November 28, 2023&nbsp;&nbsp;8:54:32</a>
+                        Date: <a href="#">November 28, 2023&nbsp;&nbsp;9:29:14</a>
                         </span>
                     
                     
@@ -152,13 +214,17 @@
         </header>
 
         <div class="post-content">
-            <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">from mpl_toolkits.axes_grid1 import ImageGrid</span><br><span class="line">%matplotlib inline #jupyter中使用，需要这一行</span><br><span class="line">import os</span><br><span class="line">import cv2</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#调整</span><br><span class="line">path = &#x27;/data/lwb/data/HPA/train/mix/pos/&#x27;</span><br><span class="line">N = 49</span><br><span class="line">row = 7</span><br><span class="line">col = 7</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">img = []</span><br><span class="line">for i in os.listdir(path)[:N]:</span><br><span class="line">    img_path = os.path.join(path,i)</span><br><span class="line">    img_bgr = cv2.imread(img_path)</span><br><span class="line">    img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)</span><br><span class="line">    img.append(img_rgb)</span><br><span class="line">len(img)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(10, 10))</span><br><span class="line">grid = ImageGrid(fig, 111,  # 类似绘制子图 subplot(111)</span><br><span class="line">                 nrows_ncols=(row, col),  # 创建 row 行 col 列的 axes 网格</span><br><span class="line">                 axes_pad=0.05,  # 网格间距</span><br><span class="line">                 share_all=True</span><br><span class="line">                 )</span><br><span class="line"></span><br><span class="line"># 遍历每张图像</span><br><span class="line">for ax, im in zip(grid, img):</span><br><span class="line">    ax.imshow(im)</span><br><span class="line">    ax.axis(&#x27;off&#x27;)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+            <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import wandb</span><br><span class="line">import time</span><br></pre></td></tr></table></figure>
+<h2 id="启动-结束"><a href="#启动-结束" class="headerlink" title="启动&#x2F;结束"></a>启动&#x2F;结束</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wandb.init(project=<span class="string">&#x27;HPA&#x27;</span>, name=time.strftime(<span class="string">&#x27;%m%d%H%M%S&#x27;</span>))</span><br><span class="line"></span><br><span class="line">wandb.finsh()</span><br></pre></td></tr></table></figure>
+<h2 id="日志记录"><a href="#日志记录" class="headerlink" title="日志记录"></a>日志记录</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#log_train = &#123;&#125;</span></span><br><span class="line"><span class="comment">#log_train[&#x27;epoch&#x27;] = 0</span></span><br><span class="line"><span class="comment">#log_train[&#x27;batch&#x27;] = 0</span></span><br><span class="line"><span class="comment">#log_train[&#x27;acc&#x27;] = ***</span></span><br><span class="line">wandb.log(log_train)</span><br></pre></td></tr></table></figure>
+<h2 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h2><ul>
+<li>model可以是单个，也可以是多个，包含在list中</li>
+<li>log为记录的指标，可以是 “gradients”、”parameters”、”all” 或 None， 默认值为 “gradients” <ul>
+<li>通过监控gradients、parameters观察模型是否趋于稳定</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wandb.watch(model, log=<span class="string">&quot;gradients&quot;</span>, log_freq=<span class="number">1000</span>, log_graph=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
 
 
         </div>
@@ -169,10 +235,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/Images/"># Images</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -183,10 +245,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/11/28/wandb/">wandb</a>
             
-            
-            <a class="next" rel="next" href="/2023/11/14/Pandas/">Pandas</a>
+            <a class="next" rel="next" href="/2023/11/28/ViewImage/">ViewImage</a>
             
         </section>
 
