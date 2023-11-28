@@ -198,7 +198,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">November 28, 2023&nbsp;&nbsp;10:25:22</a>
+                        Date: <a href="#">November 29, 2023&nbsp;&nbsp;10:25:22</a>
                         </span>
                     
                     
@@ -217,23 +217,36 @@
             <ul>
 <li>先创建好相应的仓库</li>
 </ul>
-<h2 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//初始化</span><br><span class="line">git init </span><br><span class="line"></span><br><span class="line">//添加文件</span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line">//提交暂存区</span><br><span class="line">git commit -m &#x27;feat:...&#x27;</span><br></pre></td></tr></table></figure>
+<h2 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h2><ul>
+<li>初始化<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//初始化</span><br><span class="line">git init </span><br></pre></td></tr></table></figure></li>
+<li>跟踪<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//跟踪文件</span><br><span class="line">git add name</span><br><span class="line">//跟踪整个目录</span><br><span class="line">git add .</span><br><span class="line">//解除跟踪</span><br><span class="line">git rm name</span><br></pre></td></tr></table></figure></li>
+<li>查看文件状态</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//文件是否修改</span><br><span class="line">git status</span><br><span class="line">//查看文件哪个位置修改</span><br><span class="line">git diff</span><br><span class="line">//查看历史提交</span><br><span class="line">git log --pretty=oneline</span><br></pre></td></tr></table></figure>
+
+
 <ul>
+<li><p>提交</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//提交暂存区</span><br><span class="line">git commit -m &#x27;feat:...&#x27;</span><br></pre></td></tr></table></figure></li>
 <li><p>关联远程仓库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//关联</span><br><span class="line">//origin 似乎是仓库别名</span><br><span class="line">git remote add origin https://仓库url地址</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//关联</span><br><span class="line">//origin 远程仓库别名</span><br><span class="line">git remote add origin https://仓库url地址</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>上传</p>
 </li>
+<li><p>-u  后续的git push可以直接用，不需要后面的参数</p>
+</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//origin：仓库</span><br><span class="line">//master：分支</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//origin：远程仓库</span><br><span class="line">//master：本地分支</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><ul>
-<li><p>在进行多人协作开发的时候，为了防止互相干扰，协同开发，每个开发者都基于分支进行项目功能的开发，最后再合并分支</p>
-</li>
-<li><p>查看分支列表</p>
-</li>
+<li>在进行多人协作开发的时候，为了防止互相干扰，协同开发，每个开发者都基于分支进行项目功能的开发，最后再合并分支</li>
+<li>可以在一个提交对象上新建多个分支</li>
+</ul>
+<p><img src="/2023/11/29/git/image-20231128152828785.png" alt="image-20231128152828785"></p>
+<ul>
+<li>查看分支列表</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//查看分支列表</span><br><span class="line">git branch</span><br></pre></td></tr></table></figure>
 
@@ -261,6 +274,16 @@
 <li>删除</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//删除分支</span><br><span class="line">git branch -d name</span><br></pre></td></tr></table></figure>
+
+<h2 id="重置"><a href="#重置" class="headerlink" title="重置"></a>重置</h2><ul>
+<li>撤销提交</li>
+<li>head~    表示撤销上一次</li>
+<li>head~2  表示倒数第二次</li>
+<li>soft：之前git add将文件设置成暂存状态 还是存在的</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset head~ --soft</span><br></pre></td></tr></table></figure>
+
+<h2 id="变基"><a href="#变基" class="headerlink" title="变基"></a>变基</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rebase</span><br></pre></td></tr></table></figure>
 
 
         </div>
