@@ -286,6 +286,13 @@
 <h2 id="变基"><a href="#变基" class="headerlink" title="变基"></a>变基</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rebase</span><br></pre></td></tr></table></figure>
 
 
+
+<h2 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h2><ul>
+<li>Failed to connect to <a href="https://link.zhihu.com/?target=http://github.com">github.com</a> port 443 : Timed out</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 注意修改成自己的IP和端口号</span><br><span class="line"># 7890 clash默认port</span><br><span class="line">git config --global http.proxy http://127.0.0.1:7890 </span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br><span class="line"></span><br><span class="line"># 取消代理</span><br><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br><span class="line"></span><br><span class="line"># 查看代理</span><br><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br></pre></td></tr></table></figure>
+
+
         </div>
 
         
