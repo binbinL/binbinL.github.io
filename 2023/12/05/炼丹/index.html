@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Bin">
+
+
+
+    <meta name="description" content="Record the learning process">
+
+
+
+<title>调参 | Notes</title>
+
+
+
+    <link rel="icon" href="/001.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/"></a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/"></a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">调参</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">December 5, 2023&nbsp;&nbsp;20:25:06</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Deep-Learning/">Deep Learning</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="DataSets和DataLoaders"><a href="#DataSets和DataLoaders" class="headerlink" title="DataSets和DataLoaders"></a>DataSets和DataLoaders</h2><ul>
+<li>DataSet需要有三个必要的函数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__init__ # class创建生成</span><br><span class="line">__len__  # len()</span><br><span class="line">__getitem__ #通过index给出对应的数据</span><br><span class="line"></span><br><span class="line">#对于图像而言， ImageFolder好用</span><br><span class="line">from torchvision.datasets import ImageFolder</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DataLoaders定义数据装载规则</li>
+<li><strong>DataLoaders划分batchs，每个batch有哪些索引号，通过DataSets的getitem获得对应数据</strong></li>
+<li>len(dataloader) &#x3D;&#x3D; len(datasets) &#x2F; batch_size</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#图像数据举例</span></span><br><span class="line">    data_transform = &#123;</span><br><span class="line">        <span class="string">&quot;train&quot;</span>: transforms.Compose([transforms.RandomResizedCrop(input_size),</span><br><span class="line">                                     transforms.RandomHorizontalFlip(<span class="number">0.5</span>),</span><br><span class="line">                                     transforms.ColorJitter(brightness=<span class="number">0.2</span>, contrast=<span class="number">0.2</span>),</span><br><span class="line">                                     transforms.ToTensor(),</span><br><span class="line">                                     transforms.Normalize(mean=[<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>], </span><br><span class="line">                                                          std=[<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>])]),</span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;val&quot;</span>: transforms.Compose([transforms.Resize(<span class="number">512</span>),</span><br><span class="line">                                   transforms.CenterCrop(input_size),</span><br><span class="line">                                   transforms.ToTensor(),</span><br><span class="line">                                   transforms.Normalize(mean=[<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>], </span><br><span class="line">                                                        std=[<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>])])&#125;</span><br><span class="line">    </span><br><span class="line">    train_dataset = ImageFolder(root=train_root,transform=data_transform[<span class="string">&quot;train&quot;</span>])</span><br><span class="line">    val_dataset = ImageFolder(root=val_root,transform=data_transform[<span class="string">&quot;val&quot;</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 封装训练集</span></span><br><span class="line">    train_loader = DataLoader(train_dataset,</span><br><span class="line">                              batch_size=batch_size,</span><br><span class="line">                              shuffle=<span class="literal">True</span>,</span><br><span class="line">                              num_workers=nw,</span><br><span class="line">                              drop_last = <span class="literal">False</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 封装验证集</span></span><br><span class="line">    val_loader = DataLoader(val_dataset,</span><br><span class="line">                            batch_size=batch_size,</span><br><span class="line">                            shuffle=<span class="literal">True</span>,</span><br><span class="line">                            pin_memory=<span class="literal">True</span>,</span><br><span class="line">                            num_workers=nw,</span><br><span class="line">                            drop_last = <span class="literal">False</span>)</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<h2 id="优化器以及调参策略"><a href="#优化器以及调参策略" class="headerlink" title="优化器以及调参策略"></a>优化器以及调参策略</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line"><span class="comment">#SGD</span></span><br><span class="line">optimizer = optim.SGD(model.parameters(),lr=lr,momentum=<span class="number">0.8</span>)</span><br><span class="line"><span class="comment">#Adam</span></span><br><span class="line">optimizer = optim.Adam(model.parameters(),lr=lr,betas=(<span class="number">0.9</span>, <span class="number">0.9</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="学习率调整"><a href="#学习率调整" class="headerlink" title="学习率调整"></a>学习率调整</h2><h3 id="CosineAnnealingLR"><a href="#CosineAnnealingLR" class="headerlink" title="CosineAnnealingLR"></a>CosineAnnealingLR</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#每个batch都更新一次</span><br><span class="line">#n_epoch 总共的epoch数</span><br><span class="line">#batch_num 一个trainloader的batch数目</span><br><span class="line">#这样设置的策略，lr的更新刚好为1/2的余弦</span><br><span class="line">lr_scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer = optimizer,T_max=n_epoch*batch_num,eta_min=1e-6,verbose=True)</span><br><span class="line"></span><br><span class="line">#每个epoch更新一次</span><br><span class="line">lr_scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer = optimizer,T_max=n_epoch,eta_min=1e-6,verbose=True)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果需要进行几个cos变化，根据此基础T_max 再除以x</li>
+<li>例如 此时x&#x3D;7 ，便有7个 半个 cos</li>
+</ul>
+<p><img src="/2023/12/05/%E7%82%BC%E4%B8%B9/image-20231206093753071.png" alt="image-20231206093753071"></p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><h3 id="GPU-and-DataParallel"><a href="#GPU-and-DataParallel" class="headerlink" title="GPU and DataParallel"></a>GPU and DataParallel</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">device = torch.device(<span class="string">&quot;cuda&quot;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&#x27;cpu&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> torch.cuda.device_count() &gt; <span class="number">1</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Use&quot;</span>, torch.cuda.device_count(), <span class="string">&#x27;gpus&#x27;</span>)</span><br><span class="line">    model = nn.DataParallel(model)</span><br><span class="line">model = model.to(device)</span><br></pre></td></tr></table></figure>
+
+<h3 id="save-and-load"><a href="#save-and-load" class="headerlink" title="save and load"></a>save and load</h3><ul>
+<li>整个模型</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 保存模型</span><br><span class="line">torch.save(model, &#x27;model_name.pth&#x27;)</span><br><span class="line"></span><br><span class="line"># 读取模型</span><br><span class="line">model = torch.load(&#x27;model_name.pth&#x27;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 保存模型</span><br><span class="line">torch.save(&#123;&#x27;model&#x27;: model.state_dict()&#125;, &#x27;model_name.pth&#x27;)</span><br><span class="line"></span><br><span class="line"># 读取模型</span><br><span class="line">model = net()</span><br><span class="line">state_dict = torch.load(&#x27;model_name.pth&#x27;)</span><br><span class="line">model.load_state_dict(state_dict[&#x27;model&#x27;])</span><br></pre></td></tr></table></figure>
+
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> wandb</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> transforms</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">from</span> torchvision.datasets <span class="keyword">import</span> ImageFolder</span><br><span class="line"><span class="keyword">from</span> models.Densenet <span class="keyword">import</span> densenet121</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> precision_score,recall_score,accuracy_score,f1_score,roc_auc_score</span><br><span class="line"><span class="keyword">from</span> setting <span class="keyword">import</span> train_root,val_root, batch_size,n_epoch,save_root,input_size,nw,lr,model_root</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">evaluate</span>(<span class="params">model, device, criterion, test_loader,epoch</span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    在整个测试集上评估，返回分类评估指标日志</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    loss_list = []</span><br><span class="line">    labels_list = []</span><br><span class="line">    preds_list = []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="keyword">for</span> images, labels <span class="keyword">in</span> test_loader: <span class="comment"># 生成一个 batch 的数据和标注</span></span><br><span class="line">            images = images.to(device)</span><br><span class="line">            labels = labels.to(device)</span><br><span class="line">            outputs = model(images) <span class="comment"># 输入模型，执行前向预测</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 获取整个测试集的标签类别和预测类别</span></span><br><span class="line">            _, preds = torch.<span class="built_in">max</span>(outputs, <span class="number">1</span>) <span class="comment"># 获得当前 batch 所有图像的预测类别</span></span><br><span class="line">            preds = preds.cpu().numpy()</span><br><span class="line">            loss = criterion(outputs, labels) <span class="comment"># 由 logit，计算当前 batch 中，每个样本的平均交叉熵损失函数值</span></span><br><span class="line">            loss = loss.detach().cpu().numpy()</span><br><span class="line">            outputs = outputs.detach().cpu().numpy()</span><br><span class="line">            labels = labels.detach().cpu().numpy()</span><br><span class="line"></span><br><span class="line">            loss_list.append(loss)</span><br><span class="line">            labels_list.extend(labels)</span><br><span class="line">            preds_list.extend(preds)</span><br><span class="line">        </span><br><span class="line">    log_test = &#123;&#125;</span><br><span class="line">    log_test[<span class="string">&#x27;epoch&#x27;</span>] = epoch</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 计算分类评估指标</span></span><br><span class="line">    log_test[<span class="string">&#x27;test_loss&#x27;</span>] = np.mean(loss_list)</span><br><span class="line">    log_test[<span class="string">&#x27;test_accuracy&#x27;</span>] = accuracy_score(labels_list, preds_list)</span><br><span class="line">    log_test[<span class="string">&#x27;test_precision&#x27;</span>] = precision_score(labels_list, preds_list, average=<span class="string">&#x27;macro&#x27;</span>,zero_division=<span class="number">0</span>)</span><br><span class="line">    log_test[<span class="string">&#x27;test_recall&#x27;</span>] = recall_score(labels_list, preds_list, average=<span class="string">&#x27;macro&#x27;</span>,zero_division=<span class="number">0</span>)</span><br><span class="line">    log_test[<span class="string">&#x27;test_f1-score&#x27;</span>] = f1_score(labels_list, preds_list, average=<span class="string">&#x27;macro&#x27;</span>,zero_division=<span class="number">0</span>)</span><br><span class="line">    log_test[<span class="string">&#x27;roc_auc_score&#x27;</span>] = roc_auc_score(labels_list, preds_list, average=<span class="string">&#x27;macro&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> log_test</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line"></span><br><span class="line">    data_transform = &#123;</span><br><span class="line">        <span class="string">&quot;train&quot;</span>: transforms.Compose([transforms.RandomResizedCrop(input_size),</span><br><span class="line">                                     transforms.RandomHorizontalFlip(<span class="number">0.5</span>),</span><br><span class="line">                                     transforms.ColorJitter(brightness=<span class="number">0.2</span>, contrast=<span class="number">0.2</span>),</span><br><span class="line">                                     transforms.ToTensor(),</span><br><span class="line">                                     transforms.Normalize(mean=[<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>], </span><br><span class="line">                                                          std=[<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>])]),</span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;val&quot;</span>: transforms.Compose([transforms.Resize(<span class="number">512</span>),</span><br><span class="line">                                   transforms.CenterCrop(input_size),</span><br><span class="line">                                   transforms.ToTensor(),</span><br><span class="line">                                   transforms.Normalize(mean=[<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>], </span><br><span class="line">                                                        std=[<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>])])&#125;</span><br><span class="line">    </span><br><span class="line">    train_dataset = ImageFolder(root=train_root,</span><br><span class="line">                                transform=data_transform[<span class="string">&quot;train&quot;</span>])</span><br><span class="line">    </span><br><span class="line">    val_dataset = ImageFolder(root=val_root,</span><br><span class="line">                              transform=data_transform[<span class="string">&quot;val&quot;</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 封装训练集</span></span><br><span class="line">    train_loader = DataLoader(train_dataset,</span><br><span class="line">                              batch_size=batch_size,</span><br><span class="line">                              shuffle=<span class="literal">True</span>,</span><br><span class="line">                              num_workers=nw,</span><br><span class="line">                              drop_last = <span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 封装验证集</span></span><br><span class="line">    val_loader = DataLoader(val_dataset,</span><br><span class="line">                            batch_size=batch_size,</span><br><span class="line">                            shuffle=<span class="literal">True</span>,</span><br><span class="line">                            pin_memory=<span class="literal">True</span>,</span><br><span class="line">                            num_workers=nw,</span><br><span class="line">                            drop_last = <span class="literal">False</span>)</span><br><span class="line">    <span class="comment"># # 各类别名称</span></span><br><span class="line">    <span class="comment"># class_names = train_dataset.classes</span></span><br><span class="line">    <span class="comment"># # 映射关系：类别 到 索引号</span></span><br><span class="line">    <span class="comment"># train_dataset.class_to_idx</span></span><br><span class="line">    <span class="comment"># 映射关系：索引号 到 类别</span></span><br><span class="line">    idx_to_labels = &#123;y:x <span class="keyword">for</span> x,y <span class="keyword">in</span> train_dataset.class_to_idx.items()&#125;</span><br><span class="line">    <span class="comment"># 保存为本地的 npy 文件</span></span><br><span class="line">    np.save(<span class="string">&#x27;idx_to_labels.npy&#x27;</span>, idx_to_labels)</span><br><span class="line">    np.save(<span class="string">&#x27;labels_to_idx.npy&#x27;</span>, train_dataset.class_to_idx)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;映射关系:&#x27;</span>, train_dataset.class_to_idx) </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;训练集规格:&#x27;</span>, train_dataset[<span class="number">1</span>][<span class="number">0</span>].size())</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;len of train_dataset: &#x27;</span>,<span class="built_in">len</span>(train_dataset))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;len of val_dataset: &#x27;</span>,<span class="built_in">len</span>(val_dataset))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Len of train_loader: &#x27;</span>,<span class="built_in">len</span>(train_loader))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Len of val_loader: &#x27;</span>,<span class="built_in">len</span>(val_loader))</span><br><span class="line"></span><br><span class="line">    torch.cuda.empty_cache()</span><br><span class="line"></span><br><span class="line">    model = densenet121(drop_rate = <span class="number">0.4</span>)</span><br><span class="line">    <span class="keyword">del</span> model.classifier </span><br><span class="line">    block = nn.Sequential(nn.Linear(in_features=<span class="number">1024</span>, out_features=<span class="number">512</span>, bias=<span class="literal">True</span>),</span><br><span class="line">                      nn.ReLU(inplace=<span class="literal">True</span>),nn.Dropout(<span class="number">0.5</span>),</span><br><span class="line">                      nn.Linear(in_features=<span class="number">512</span>, out_features=<span class="number">128</span>, bias=<span class="literal">True</span>),</span><br><span class="line">                      nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">                      nn.Linear(in_features=<span class="number">128</span>, out_features=<span class="number">2</span>, bias=<span class="literal">True</span>),</span><br><span class="line">                      )</span><br><span class="line">    model.add_module(<span class="string">&#x27;classifier&#x27;</span>,block)</span><br><span class="line"></span><br><span class="line">    device = torch.device(<span class="string">&quot;cuda&quot;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&#x27;cpu&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> torch.cuda.device_count() &gt; <span class="number">1</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Use&quot;</span>, torch.cuda.device_count(), <span class="string">&#x27;gpus&#x27;</span>)</span><br><span class="line">        model = nn.DataParallel(model)</span><br><span class="line">    model = model.to(device)</span><br><span class="line"></span><br><span class="line">    model.load_state_dict(torch.load(model_root))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 优化器</span></span><br><span class="line">    <span class="comment"># optimizer = optim.Adam(model.parameters(),lr=lr,betas=(0.9, 0.9))</span></span><br><span class="line">    <span class="comment"># optimizer = optim.RAdam(model.parameters(),lr=lr,betas=(0.8, 0.9))</span></span><br><span class="line">    optimizer = optim.SGD(model.parameters(),lr=lr,momentum=<span class="number">0.9</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 交叉熵损失函数</span></span><br><span class="line">    criterion = nn.CrossEntropyLoss() </span><br><span class="line"></span><br><span class="line">    <span class="comment"># #学习率降低策略</span></span><br><span class="line">    <span class="comment"># lr_scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=37, gamma=0.8,verbose=True)</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># lr_scheduler = optim.lr_scheduler.OneCycleLR(optimizer, max_lr=0.1,pct_start=0.25,steps_per_epoch=len(train_loader), epochs=n_epoch,verbose=True)</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># lr_scheduler = optim.lr_scheduler.CyclicLR(optimizer, base_lr=lr, max_lr=0.1,</span></span><br><span class="line">    <span class="comment">#                                           mode = &#x27;exp_range&#x27;, gamma = 0.9,</span></span><br><span class="line">    <span class="comment">#                                           step_size_up=200)</span></span><br><span class="line"></span><br><span class="line">    lr_scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer = optimizer,T_max = n_epoch*<span class="number">185</span>/<span class="number">9</span>,eta_min=<span class="number">1e-6</span>,verbose=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment">#lr_scheduler = optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer,T_0=5,T_mult=2)</span></span><br><span class="line">    </span><br><span class="line">    best_roc_auc_score = <span class="number">0.0</span></span><br><span class="line">    <span class="comment"># 训练日志-训练集</span></span><br><span class="line">    df_train_log = pd.DataFrame()</span><br><span class="line">    <span class="comment"># 训练日志-测试集</span></span><br><span class="line">    df_test_log = pd.DataFrame()</span><br><span class="line">    <span class="comment"># lr</span></span><br><span class="line">    df_lr_log = pd.DataFrame()</span><br><span class="line"></span><br><span class="line">    wandb.init(project=<span class="string">&#x27;HPA&#x27;</span>, name=time.strftime(<span class="string">&#x27;%m%d%H%M%S&#x27;</span>))</span><br><span class="line">    wandb.watch(model, log=<span class="string">&quot;gradients&quot;</span>, log_freq=<span class="number">1000</span>, log_graph=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n_epoch+<span class="number">1</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;Epoch <span class="subst">&#123;epoch&#125;</span>/<span class="subst">&#123;n_epoch&#125;</span>&#x27;</span>)</span><br><span class="line">        <span class="comment">## 训练阶段</span></span><br><span class="line">        model.train()</span><br><span class="line">        running_loss = <span class="number">0.0</span></span><br><span class="line">        batch_num = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> images, labels <span class="keyword">in</span> tqdm(train_loader): <span class="comment"># 获得一个 batch 的数据和标注</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 获得一个 batch 的数据和标注</span></span><br><span class="line">            images = images.to(device)</span><br><span class="line">            labels = labels.to(device)</span><br><span class="line">            </span><br><span class="line">            outputs = model(images) <span class="comment"># 输入模型，执行前向预测</span></span><br><span class="line">            loss = criterion(outputs, labels) <span class="comment"># 计算当前 batch 中，每个样本的平均交叉熵损失函数值</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 优化更新权重</span></span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line">            running_loss +=loss.item()</span><br><span class="line">            batch_num +=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">            log_lr = &#123;&#125;</span><br><span class="line">            log_lr[<span class="string">&#x27;epoch&#x27;</span>] = epoch</span><br><span class="line">            log_lr[<span class="string">&#x27;batch&#x27;</span>] = batch_num</span><br><span class="line">            log_lr[<span class="string">&#x27;lr&#x27;</span>] = optimizer.param_groups[<span class="number">0</span>][<span class="string">&#x27;lr&#x27;</span>]</span><br><span class="line">            df_lr_log = pd.concat([df_lr_log,pd.DataFrame([log_lr])],ignore_index=<span class="literal">True</span>)</span><br><span class="line">            wandb.log(log_lr)</span><br><span class="line"></span><br><span class="line">            <span class="comment">#注意</span></span><br><span class="line">            lr_scheduler.step()</span><br><span class="line"></span><br><span class="line">        log_train = &#123;&#125;</span><br><span class="line">        log_train[<span class="string">&#x27;epoch&#x27;</span>] = epoch</span><br><span class="line">        log_train[<span class="string">&#x27;train_loss&#x27;</span>] = running_loss/<span class="built_in">len</span>(train_loader)</span><br><span class="line">        df_train_log = pd.concat([df_train_log,pd.DataFrame([log_train])],ignore_index=<span class="literal">True</span>)</span><br><span class="line">        wandb.log(log_train)</span><br><span class="line"></span><br><span class="line">        <span class="comment">## 测试阶段</span></span><br><span class="line">        model.<span class="built_in">eval</span>()</span><br><span class="line">        log_test = evaluate(model, device, criterion, val_loader,epoch)</span><br><span class="line">        df_test_log = pd.concat([df_test_log,pd.DataFrame([log_test])],ignore_index=<span class="literal">True</span>)</span><br><span class="line">        wandb.log(log_test)</span><br><span class="line">          </span><br><span class="line">        <span class="comment"># 保存最新的最佳模型文件</span></span><br><span class="line">        <span class="keyword">if</span> log_test[<span class="string">&#x27;roc_auc_score&#x27;</span>] &gt; best_roc_auc_score: </span><br><span class="line">            <span class="comment"># 删除旧的最佳模型文件(如有)</span></span><br><span class="line">            old_best_checkpoint_path = save_root+<span class="string">&#x27;/best-&#123;:.3f&#125;.pth&#x27;</span>.<span class="built_in">format</span>(best_roc_auc_score)</span><br><span class="line">            <span class="keyword">if</span> os.path.exists(old_best_checkpoint_path):</span><br><span class="line">                os.remove(old_best_checkpoint_path)</span><br><span class="line">            <span class="comment"># 保存新的最佳模型文件</span></span><br><span class="line">            best_roc_auc_score = log_test[<span class="string">&#x27;roc_auc_score&#x27;</span>]</span><br><span class="line">            new_best_checkpoint_path = save_root+<span class="string">&#x27;/best-&#123;:.3f&#125;.pth&#x27;</span>.<span class="built_in">format</span>(log_test[<span class="string">&#x27;roc_auc_score&#x27;</span>])</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(save_root):</span><br><span class="line">                os.makedirs(save_root)</span><br><span class="line"></span><br><span class="line">            torch.save(model.state_dict(), new_best_checkpoint_path)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;保存新的最佳模型&#x27;</span>, save_root+<span class="string">&#x27;/best-&#123;:.3f&#125;.pth&#x27;</span>.<span class="built_in">format</span>(best_roc_auc_score))</span><br><span class="line"></span><br><span class="line">    save_root_dir = save_root+<span class="string">&#x27;/best-&#123;:.3f&#125;&#x27;</span>.<span class="built_in">format</span>(best_roc_auc_score)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(save_root_dir):</span><br><span class="line">        os.makedirs(save_root_dir)</span><br><span class="line"></span><br><span class="line">    df_train_log.to_csv(save_root_dir+<span class="string">&#x27;/train_log.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">    df_test_log.to_csv(save_root_dir+<span class="string">&#x27;/val_log.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">    df_lr_log.to_csv(save_root_dir+<span class="string">&#x27;/lr_log.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line"></span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Pytorch/"># Pytorch</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/11/29/git/">git</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Bin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
