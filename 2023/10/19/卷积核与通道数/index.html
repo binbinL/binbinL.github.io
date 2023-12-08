@@ -229,6 +229,26 @@
 <li>因为1 * 1 的卷积没有进行卷积操作，相当于是对数据进行降维&#x2F;升维</li>
 <li>在第三个维度全连接</li>
 </ul>
+<h2 id="nn-Embedding"><a href="#nn-Embedding" class="headerlink" title="nn.Embedding()"></a>nn.Embedding()</h2><ul>
+<li>num_embeddings - 词嵌入字典大小，即一个字典里要有多少个词。</li>
+<li>embedding_dim - 每个词嵌入向量的大小。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;embedding = nn.Embedding(<span class="number">10</span>, <span class="number">3</span>)<span class="comment">#构造了一个 10 * 3 的词表 ，每个词都可以用一个三维的向量表示</span></span><br><span class="line">&gt;&gt;&gt;<span class="built_in">input</span> = torch.LongTensor([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">9</span>]]) <span class="comment">#2 * 4</span></span><br><span class="line">&gt;&gt;&gt;embedding(<span class="built_in">input</span>) <span class="comment"># 2*4*3</span></span><br><span class="line">tensor([[[-<span class="number">0.0251</span>, -<span class="number">1.6902</span>,  <span class="number">0.7172</span>],</span><br><span class="line">         [-<span class="number">0.6431</span>,  <span class="number">0.0748</span>,  <span class="number">0.6969</span>],</span><br><span class="line">         [ <span class="number">1.4970</span>,  <span class="number">1.3448</span>, -<span class="number">0.9685</span>],</span><br><span class="line">         [-<span class="number">0.3677</span>, -<span class="number">2.7265</span>, -<span class="number">0.1685</span>]],</span><br><span class="line"></span><br><span class="line">        [[ <span class="number">1.4970</span>,  <span class="number">1.3448</span>, -<span class="number">0.9685</span>],</span><br><span class="line">         [ <span class="number">0.4362</span>, -<span class="number">0.4004</span>,  <span class="number">0.9400</span>],</span><br><span class="line">         [-<span class="number">0.6431</span>,  <span class="number">0.0748</span>,  <span class="number">0.6969</span>],</span><br><span class="line">         [ <span class="number">0.9124</span>, -<span class="number">2.3616</span>,  <span class="number">1.1151</span>]]])</span><br><span class="line">         </span><br><span class="line"><span class="comment">#其实就是[2, 4]中的每个值作为索引去nn.embedding中取对应的权重</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="nn-Conv1d"><a href="#nn-Conv1d" class="headerlink" title="nn.Conv1d"></a>nn.Conv1d</h2><ul>
+<li><strong>in_channels</strong>(int) – 输入信号的通道。在文本分类中，即为<strong>词向量的维度</strong></li>
+<li><strong>out_channels</strong>(int) – 卷积产生的通道。有多少个out_channels，就需要<strong>多少个1维卷积</strong>，一个1维卷积只产生x * 1 的向量</li>
+<li>kernel_size(int or tuple) - 卷积核的尺寸，卷积核的大小为(k,)，<strong>第二个维度是由in_channels来决定的</strong>，所以实际上卷积大小为kernel_size*in_channels</li>
+<li>stride(int or tuple, optional) - 卷积步长</li>
+<li>padding (int or tuple, optional)- 输入的每一条边补充0的层数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">conv1 = nn.Conv1d(in_channels=256，out_channels=100,kernel_size=2)</span><br><span class="line">input = torch.randn(32,35,256)</span><br><span class="line"># batch_size x text_len x embedding_size -&gt; batch_size x embedding_size x text_len</span><br><span class="line">input = input.permute(0,2,1)</span><br><span class="line">out = conv1(input)</span><br><span class="line">print(out.size())</span><br><span class="line"># 32*100*（35-2+1）=32*100*34</span><br></pre></td></tr></table></figure>
+
+
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sunny_xsc1994/article/details/82969867">pytorch之nn.Conv1d详解-CSDN博客</a></p>
 
         </div>
 
