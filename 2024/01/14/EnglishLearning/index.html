@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Bin">
+
+
+
+    <meta name="description" content="Record the learning process">
+
+
+
+<title>EnglishLearning | Notes</title>
+
+
+
+    <link rel="icon" href="/001.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/"></a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/"></a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">EnglishLearning</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">January 14, 2024&nbsp;&nbsp;14:35:50</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/English/">English</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <ul>
+<li><em>record my english learning</em></li>
+</ul>
+<h2 id="20240114"><a href="#20240114" class="headerlink" title="20240114"></a>20240114</h2><ul>
+<li><p>状语，修饰动词or形容词</p>
+<ul>
+<li>关系连词+分句，<u>主谓宾</u>  or  <u>主谓宾</u>，关系连词+分句</li>
+<li>当分句主语和主句主语一致的时候，可以省略分句的主语；如果分句的主语有be，be动词也可以省略；或者分句不省，主句用it<ul>
+<li>When happy，i can play computer</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>dreadful  adj. 糟糕的</p>
+</li>
+<li><p>handicap n. 残疾</p>
+</li>
+<li><p>非谓语</p>
+<ul>
+<li>无逗号（注意修饰的是谁）<ul>
+<li>i like to use <strong>computers</strong> having some software</li>
+<li>i like to use <strong>computers</strong> bought by my dad</li>
+</ul>
+</li>
+<li>有逗号（有可能修饰的是前面一句话）<ul>
+<li><strong>I like to doing exercises</strong>, making me happy</li>
+<li><strong>I</strong> like to read books, writing some notes</li>
+<li>I like to use  <strong>computers</strong>, bouhgt by my dad</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>parallel n. &#x2F; adj.  平行线，平行的</p>
+</li>
+<li><p>unparalleled adj.  空前的；无比的</p>
+</li>
+<li><p>定语 adj. 修饰名词</p>
+<ul>
+<li><p>限定性定语从句</p>
+<ul>
+<li>I have an apple that&#x2F;which is red</li>
+<li>I have a computer whose software is good</li>
+<li>(当先行词从当宾语的时候，关系代词可以省略)</li>
+<li>I like this book (that) you read</li>
+</ul>
+</li>
+<li><p>非限定，只能用which,</p>
+<ul>
+<li>可能是修饰前面一句话，但不会是修饰前面的主语</li>
+<li>I like to read books, which is useful for me</li>
+</ul>
+</li>
+<li><p>带介词的定语从句</p>
+<ul>
+<li><p>注意前面 后面 都是完整的句子</p>
+</li>
+<li><p>I like this table on which there is a book </p>
+</li>
+<li><p>I like this book through which I can learn many things</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>As </p>
+<ul>
+<li>关系连词 - 引导状语从句<ul>
+<li>因为，当</li>
+<li>正如， as someone pointed out, …</li>
+</ul>
+</li>
+<li>介词 ( + 名词)<ul>
+<li>作为， As a person, …</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>系动词</p>
+<ul>
+<li>prove&#x2F;become&#x2F;taste&#x2F;sound&#x2F;look&#x2F;smell&#x2F;feel + adj</li>
+</ul>
+</li>
+<li><p>by the mid-1980s, …  </p>
+<ul>
+<li>到…时间点后</li>
+</ul>
+</li>
+<li><p>at a loss over 困惑，不知所措</p>
+<ul>
+<li>A at a loss over B : A对B 不知所措</li>
+</ul>
+</li>
+<li><p>find（make） A (n. ) B（n. &#x2F; v. &#x2F; 介词 &#x2F; adj.） 发现</p>
+</li>
+<li><p>as though 仿佛，好像</p>
+</li>
+<li><p>take sth for granted 把…当作理所应当</p>
+</li>
+<li><p>yielded to 屈服于</p>
+</li>
+</ul>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/12/05/%E7%82%BC%E4%B8%B9/">调参</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Bin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
