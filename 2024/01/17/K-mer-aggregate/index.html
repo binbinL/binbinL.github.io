@@ -15,7 +15,7 @@
 
 
 
-<title>EnglishLearning | Notes</title>
+<title>K_mer_aggregate | Notes</title>
 
 
 
@@ -125,87 +125,25 @@
                 <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">EnglishLearning</h1>
+            <h1 class="post-title">K_mer_aggregate</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">January 14, 2024&nbsp;&nbsp;14:35:50</a>
+                        Date: <a href="#">January 17, 2024&nbsp;&nbsp;19:40:14</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/English/">English</a>
+                                <a href="/categories/Code/">Code</a>
                             
                         </span>
                     
@@ -215,106 +153,17 @@
 
         <div class="post-content">
             <ul>
-<li><em>record my english learning</em></li>
+<li>利用一维卷积做Kmer提取，可实现多组Kmer叠加</li>
 </ul>
-<h2 id="20240114"><a href="#20240114" class="headerlink" title="20240114"></a>20240114</h2><ul>
-<li><p>状语，修饰动词or形容词</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">K_mer_aggregate</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,kmers,in_dim,out_dim,dropout=<span class="number">0.1</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(K_mer_aggregate, self).__init__()</span><br><span class="line">        self.dropout=nn.Dropout(dropout)</span><br><span class="line">        self.convs=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> kmers:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            <span class="comment"># sequence_length -&gt; sequence_length-i+1</span></span><br><span class="line">            self.convs.append(nn.Conv1d(in_dim,out_dim,i,padding=<span class="number">0</span>))</span><br><span class="line">        self.convs=nn.ModuleList(self.convs)</span><br><span class="line">        self.activation=nn.ReLU(inplace=<span class="literal">True</span>)</span><br><span class="line">        self.norm=nn.LayerNorm(out_dim)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self,x</span>):</span><br><span class="line">        <span class="comment"># 卷积是在最后一个维度上做的</span></span><br><span class="line">        <span class="comment"># (batch_size, sequence_length, features)-&gt;(batch_size, features, sequence_length)</span></span><br><span class="line">        x = x.permute(<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">        outputs=[]</span><br><span class="line">        <span class="keyword">for</span> conv <span class="keyword">in</span> self.convs:</span><br><span class="line">            outputs.append(conv(x))</span><br><span class="line">        outputs=torch.cat(outputs,dim=<span class="number">2</span>)</span><br><span class="line">        outputs=self.norm(outputs.permute(<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> outputs</span><br></pre></td></tr></table></figure>
+
+
+
 <ul>
-<li>关系连词+分句，<u>主谓宾</u>  or  <u>主谓宾</u>，关系连词+分句</li>
-<li>当分句主语和主句主语一致的时候，可以省略分句的主语；如果分句的主语有be，be动词也可以省略；或者分句不省，主句用it<ul>
-<li>When happy，i can play computer</li>
+<li>实例</li>
 </ul>
-</li>
-</ul>
-</li>
-<li><p>dreadful  adj. 糟糕的</p>
-</li>
-<li><p>handicap n. 残疾</p>
-</li>
-<li><p>非谓语</p>
-<ul>
-<li>无逗号（注意修饰的是谁）<ul>
-<li>i like to use <strong>computers</strong> having some software</li>
-<li>i like to use <strong>computers</strong> bought by my dad</li>
-</ul>
-</li>
-<li>有逗号（有可能修饰的是前面一句话）<ul>
-<li><strong>I like to doing exercises</strong>, making me happy</li>
-<li><strong>I</strong> like to read books, writing some notes</li>
-<li>I like to use  <strong>computers</strong>, bouhgt by my dad</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>parallel n. &#x2F; adj.  平行线，平行的</p>
-</li>
-<li><p>unparalleled adj.  空前的；无比的</p>
-</li>
-<li><p>定语 adj. 修饰名词</p>
-<ul>
-<li><p>限定性定语从句</p>
-<ul>
-<li>I have an apple that&#x2F;which is red</li>
-<li>I have a computer whose software is good</li>
-<li>(当先行词从当宾语的时候，关系代词可以省略)</li>
-<li>I like this book (that) you read</li>
-</ul>
-</li>
-<li><p>非限定，只能用which,</p>
-<ul>
-<li>可能是修饰前面一句话，但不会是修饰前面的主语</li>
-<li>I like to read books, which is useful for me</li>
-</ul>
-</li>
-<li><p>带介词的定语从句</p>
-<ul>
-<li><p>注意前面 后面 都是完整的句子</p>
-</li>
-<li><p>I like this table on which there is a book </p>
-</li>
-<li><p>I like this book through which I can learn many things</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>As </p>
-<ul>
-<li>关系连词 - 引导状语从句<ul>
-<li>因为，当</li>
-<li>正如， as someone pointed out, …</li>
-</ul>
-</li>
-<li>介词 ( + 名词)<ul>
-<li>作为， As a person, …</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>系动词</p>
-<ul>
-<li>prove&#x2F;become&#x2F;taste&#x2F;sound&#x2F;look&#x2F;smell&#x2F;feel + adj</li>
-</ul>
-</li>
-<li><p>by the mid-1980s, …  </p>
-<ul>
-<li>到…时间点后</li>
-</ul>
-</li>
-<li><p>at a loss over 困惑，不知所措</p>
-<ul>
-<li>A at a loss over B : A对B 不知所措</li>
-</ul>
-</li>
-<li><p>find（make） A (n. ) B（n. &#x2F; v. &#x2F; 介词 &#x2F; adj.） 发现</p>
-</li>
-<li><p>as though 仿佛，好像</p>
-</li>
-<li><p>take sth for granted 把…当作理所应当</p>
-</li>
-<li><p>yielded to 屈服于</p>
-</li>
-</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">kmers = [<span class="number">3</span>,<span class="number">6</span>]</span><br><span class="line">ninp = <span class="number">128</span></span><br><span class="line">K  = K_mer_aggregate(kmers,ninp,ninp)</span><br><span class="line"></span><br><span class="line">x = torch.rand((<span class="number">5</span>, <span class="number">10</span>, <span class="number">128</span>))*<span class="number">10</span></span><br><span class="line">out = K(x)</span><br><span class="line">out.shape</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="comment"># 13 = (10-3+1) + (10-6+1)</span></span><br><span class="line">torch.Size([<span class="number">5</span>, <span class="number">13</span>, <span class="number">128</span>])</span><br></pre></td></tr></table></figure>
+
 
         </div>
 
@@ -334,10 +183,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/01/17/RNN/">RNN</a>
             
-            
-            <a class="next" rel="next" href="/2023/12/05/DL/">DL</a>
+            <a class="next" rel="next" href="/2024/01/17/Transformer/">Transformer</a>
             
         </section>
 
