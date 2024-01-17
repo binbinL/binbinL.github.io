@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Bin">
+
+
+
+    <meta name="description" content="Record the learning process">
+
+
+
+<title>Transformer | Notes</title>
+
+
+
+    <link rel="icon" href="/001.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/"></a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/"></a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Transformer</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">January 17, 2024&nbsp;&nbsp;15:31:28</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Deep-Learning/">Deep Learning</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="MultiheadAttention"><a href="#MultiheadAttention" class="headerlink" title="MultiheadAttention"></a>MultiheadAttention</h2><h3 id="Init"><a href="#Init" class="headerlink" title="Init"></a><strong>Init</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.MultiheadAttention(embed_dim, </span><br><span class="line">                            num_heads, </span><br><span class="line">                            dropout=<span class="number">0.0</span>, </span><br><span class="line">                            bias=<span class="literal">True</span>, </span><br><span class="line">                            add_bias_kv=<span class="literal">False</span>, </span><br><span class="line">                            add_zero_attn=<span class="literal">False</span>, </span><br><span class="line">                            kdim=<span class="literal">None</span>, </span><br><span class="line">                            vdim=<span class="literal">None</span>, </span><br><span class="line">                            batch_first=<span class="literal">False</span>, </span><br><span class="line">                            device=<span class="literal">None</span>, </span><br><span class="line">                            dtype=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>embed_dim</code> (int): 输入特征的维度。</li>
+<li><code>num_heads</code> (int): 多头注意力的头数。</li>
+<li><code>dropout</code> (float, optional): 可选的 dropout 层，用于防止过拟合。默认值为 <code>0.0</code>。</li>
+<li><code>bias</code> (bool, optional): 是否使用偏置。默认值为 <code>True</code>。</li>
+<li><code>add_bias_kv</code> (bool, optional): 是否添加键值偏置。默认值为 <code>False</code>。</li>
+<li><code>add_zero_attn</code> (bool, optional): 是否添加零注意力。默认值为 <code>False</code>。</li>
+<li><code>kdim</code> (int, optional): 键的维度，如果为 <code>None</code>，则使用 <code>embed_dim</code>。</li>
+<li><code>vdim</code> (int, optional): 值的维度，如果为 <code>None</code>，则使用 <code>embed_dim</code>。</li>
+</ul>
+<h3 id="Forward"><a href="#Forward" class="headerlink" title="Forward"></a><strong>Forward</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">forward(query, </span><br><span class="line">        key, </span><br><span class="line">        value, </span><br><span class="line">        key_padding_mask=None, </span><br><span class="line">        need_weights=True, </span><br><span class="line">        attn_mask=None, </span><br><span class="line">        average_attn_weights=True)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>query</code> (Tensor):  <code>(seq_len, batch_size, embed_dim)</code>。</li>
+<li><code>key</code> (Tensor): (seq_len, batch_size, embed_dim)&#96;。</li>
+<li><code>value</code> (Tensor):  <code>(seq_len, batch_size, embed_dim)</code>。</li>
+<li><code>key_padding_mask</code> (ByteTensor, optional): 用于屏蔽某些位置的填充标记。 <code>(batch_size, seq_len)</code>。</li>
+<li><code>need_weights</code> (bool, optional): 是否返回注意力权重。默认值为 <code>True</code>。</li>
+<li><code>attn_mask</code> (Tensor, optional): 用于屏蔽某些位置的注意力掩码。 <code>(seq_len, seq_len)</code> 或 <code>(batch_size, seq_len, seq_len)</code>。</li>
+</ul>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MultiheadAttention</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, embed_dim, num_heads, dropout=<span class="number">0.0</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(MultiheadAttention, self).__init__()</span><br><span class="line">        self.embed_dim = embed_dim</span><br><span class="line">        self.num_heads = num_heads</span><br><span class="line">        self.head_dim = embed_dim // num_heads</span><br><span class="line"></span><br><span class="line">        self.q_linear = nn.Linear(embed_dim, embed_dim)</span><br><span class="line">        self.k_linear = nn.Linear(embed_dim, embed_dim)</span><br><span class="line">        self.v_linear = nn.Linear(embed_dim, embed_dim)</span><br><span class="line"></span><br><span class="line">        self.out_linear = nn.Linear(embed_dim, embed_dim)</span><br><span class="line">        self.dropout = nn.Dropout(p=dropout)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, query, key, value, mask=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="comment"># 线性变换</span></span><br><span class="line">        query = self.q_linear(query)</span><br><span class="line">        key = self.k_linear(key)</span><br><span class="line">        value = self.v_linear(value)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 将每个头的张量分割</span></span><br><span class="line">        query = query.view(query.size(<span class="number">0</span>), -<span class="number">1</span>, self.num_heads, self.head_dim).transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        key = key.view(key.size(<span class="number">0</span>), -<span class="number">1</span>, self.num_heads, self.head_dim).transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        value = value.view(value.size(<span class="number">0</span>), -<span class="number">1</span>, self.num_heads, self.head_dim).transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 缩放点积注意力</span></span><br><span class="line">        scores = torch.matmul(query, key.transpose(-<span class="number">2</span>, -<span class="number">1</span>)) / math.sqrt(self.head_dim)</span><br><span class="line">        <span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            scores = scores.masked_fill(mask == <span class="number">0</span>, <span class="built_in">float</span>(<span class="string">&#x27;-inf&#x27;</span>))</span><br><span class="line"></span><br><span class="line">        attention_weights = F.softmax(scores, dim=-<span class="number">1</span>)</span><br><span class="line">        attention_weights = self.dropout(attention_weights)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 注意力权重与值相乘并合并</span></span><br><span class="line">        output = torch.matmul(attention_weights, value)</span><br><span class="line">        output = output.transpose(<span class="number">1</span>, <span class="number">2</span>).contiguous().view(output.size(<span class="number">0</span>), -<span class="number">1</span>, self.embed_dim)</span><br><span class="line">        output = self.out_linear(output)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> output, attention_weights</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>embed_dim 是输入张量的嵌入维度，同时也是输出张量的嵌入维度</li>
+<li>num_heads 参数表示要使用的注意力头的数量</li>
+<li>在计算过程中，embed_dim 被平均分配到每个注意力头上，因此每个头的维度是 embed_dim &#x2F;&#x2F; num_heads</li>
+<li>att_weight [batch_size，seq_len，seq_len]</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn((<span class="number">5</span>, <span class="number">10</span>, <span class="number">256</span>))</span><br><span class="line"><span class="comment">#调用nn.MultiheadAttention</span></span><br><span class="line">multihead_attention = nn.MultiheadAttention(embed_dim=<span class="number">256</span>, num_heads=<span class="number">4</span>,batch_first=<span class="literal">True</span>)</span><br><span class="line">output, att_weight = multihead_attention(x, x, x)</span><br><span class="line"><span class="built_in">print</span>(output.shape)</span><br><span class="line"><span class="built_in">print</span>(att_weight.shape)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">torch.Size([<span class="number">5</span>, <span class="number">10</span>, <span class="number">256</span>])</span><br><span class="line">torch.Size([<span class="number">5</span>, <span class="number">10</span>, <span class="number">10</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="EncoderLayer"><a href="#EncoderLayer" class="headerlink" title="EncoderLayer"></a>EncoderLayer</h2><h3 id="Init-1"><a href="#Init-1" class="headerlink" title="Init"></a>Init</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.TransformerEncoderLayer(d_model, </span><br><span class="line">                                 nhead, </span><br><span class="line">                                 dim_feedforward=<span class="number">2048</span>, </span><br><span class="line">                                 dropout=<span class="number">0.1</span>, </span><br><span class="line">                                 activation=&lt;function relu&gt;, </span><br><span class="line">                                 layer_norm_eps=<span class="number">1e-05</span>, </span><br><span class="line">                                 batch_first=<span class="literal">False</span>, </span><br><span class="line">                                 norm_first=<span class="literal">False</span>, </span><br><span class="line">                                 bias=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>d_model<ul>
+<li>模型中输入和输出的特征维度</li>
+<li>整数</li>
+</ul>
+</li>
+<li>nhead<ul>
+<li>多头自注意力机制中head的数量</li>
+<li>整数</li>
+</ul>
+</li>
+<li>dim_feedforward<ul>
+<li>每个位置的前馈网络中隐藏层的维度</li>
+<li>整数，默认2048</li>
+</ul>
+</li>
+<li>dropout<ul>
+<li>模型中各层的丢弃概率</li>
+<li>浮点数，默认 0.1</li>
+</ul>
+</li>
+<li>activation<ul>
+<li>前馈网络中使用的激活函数。</li>
+<li>激活函数，默认 ReLU。</li>
+</ul>
+</li>
+<li>layer_norm_eps<ul>
+<li>层归一化中的 epsilon 值。</li>
+<li>浮点数，默认值 1e-05。</li>
+</ul>
+</li>
+<li>batch_first<ul>
+<li>输入和输出是否以批次为第一维度（True 表示是，False 表示不是）。</li>
+<li>布尔值，默认值 False。</li>
+</ul>
+</li>
+<li>norm_first<ul>
+<li>是否在自注意力和前馈网络之前应用层归一化。如果为 <code>True</code>，则在自注意力和前馈网络之前应用层归一化；如果为 <code>False</code>，则在自注意力和前馈网络之后应用层归一化。</li>
+<li>布尔值，默认值 False。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Forward-1"><a href="#Forward-1" class="headerlink" title="Forward"></a>Forward</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">forward(src, </span><br><span class="line">        src_mask=<span class="literal">None</span>, </span><br><span class="line">        src_key_padding_mask=<span class="literal">None</span>, </span><br><span class="line">        is_causal=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>src<ul>
+<li>输入序列， (seq_len, batch, embed_dim)  or  (batch, seq_len, embed_dim)，具体看 <code>batch_first</code> 参数</li>
+<li>torch.Tensor。</li>
+</ul>
+</li>
+<li>src_mask:<ul>
+<li>用于屏蔽（mask）输入序列中的特定位置。如果某个位置的值为 True，表示该位置需要被屏蔽（不参与计算）。形状为 (seq_len, seq_len) 的布尔型张量或者 None</li>
+<li>torch.Tensor 或 None</li>
+</ul>
+</li>
+<li>src_key_padding_mask<ul>
+<li>用于屏蔽输入序列中的特定位置，与 <code>src_mask</code> 不同的是，该屏蔽是基于输入序列的 key padding mask。形状为 (batch, seq_len) 的布尔型张量或者 None</li>
+<li>torch.Tensor 或 None</li>
+</ul>
+</li>
+<li>is_causal<ul>
+<li>一个布尔值，表示是否采用因果（causal）注意力机制。如果设置为 True，表示模型只能关注到当前位置之前的位置。这在处理时间序列等因果关系时很有用</li>
+<li>布尔值</li>
+</ul>
+</li>
+</ul>
+<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><ul>
+<li><strong>调用nn.MyTransformerEncoderLayer</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># (sequence_length, batch_size, features)</span></span><br><span class="line">x = torch.randn((<span class="number">5</span>, <span class="number">10</span>, <span class="number">128</span>)) </span><br><span class="line">encoder_layer = torch.nn.TransformerEncoderLayer(d_model=<span class="number">128</span>, nhead=<span class="number">4</span>)</span><br><span class="line">output = encoder_layer(x)</span><br><span class="line">output</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">torch.Size([<span class="number">5</span>, <span class="number">10</span>, <span class="number">128</span>])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如需提取注意力权重</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyTransformerEncoderLayer</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_model, nhead, dim_feedforward=<span class="number">2048</span>, dropout=<span class="number">0.1</span>, activation=<span class="string">&quot;relu&quot;</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(MyTransformerEncoderLayer, self).__init__()</span><br><span class="line">        self.self_attn = nn.MultiheadAttention(d_model, nhead, dropout=dropout)</span><br><span class="line">        self.linear1 = nn.Linear(d_model, dim_feedforward)</span><br><span class="line">        self.dropout = nn.Dropout(dropout)</span><br><span class="line">        self.linear2 = nn.Linear(dim_feedforward, d_model)</span><br><span class="line">        self.norm1 = nn.LayerNorm(d_model)</span><br><span class="line">        self.norm2 = nn.LayerNorm(d_model)</span><br><span class="line">        self.dropout1 = nn.Dropout(dropout)</span><br><span class="line">        self.dropout2 = nn.Dropout(dropout)</span><br><span class="line">        self.activation = nn.ReLU() <span class="keyword">if</span> activation == <span class="string">&quot;relu&quot;</span> <span class="keyword">else</span> nn.GELU()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, src, src_mask=<span class="literal">None</span>, src_key_padding_mask=<span class="literal">None</span></span>):</span><br><span class="line">        src2, att_weight = self.self_attn(src, src, src, attn_mask=src_mask,</span><br><span class="line">                              key_padding_mask=src_key_padding_mask)</span><br><span class="line">        src = src + self.dropout1(src2)</span><br><span class="line">        src = self.norm1(src)</span><br><span class="line"></span><br><span class="line">        src2 = self.linear2(self.dropout(self.activation(self.linear1(src))))</span><br><span class="line">        src = src + self.dropout2(src2)</span><br><span class="line">        src = self.norm2(src)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> src,att_weight</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># (sequence_length, batch_size, features)</span></span><br><span class="line">x = torch.randn((<span class="number">5</span>, <span class="number">10</span>, <span class="number">128</span>)) </span><br><span class="line">encoder_layer = MyTransformerEncoderLayer(d_model=<span class="number">128</span>, nhead=<span class="number">4</span>)</span><br><span class="line">output,att_weight= encoder_layer(x)</span><br><span class="line"><span class="built_in">print</span>(output.shape)</span><br><span class="line"><span class="built_in">print</span>(att_weight.shape)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">torch.Size([<span class="number">5</span>, <span class="number">10</span>, <span class="number">128</span>])</span><br><span class="line">torch.Size([<span class="number">5</span>, <span class="number">10</span>, <span class="number">10</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="DecoderLayer"><a href="#DecoderLayer" class="headerlink" title="DecoderLayer"></a>DecoderLayer</h2><h3 id="Init-2"><a href="#Init-2" class="headerlink" title="Init"></a>Init</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.TransformerDecoderLayer(d_model, </span><br><span class="line">                                 nhead, </span><br><span class="line">                                 dim_feedforward=<span class="number">2048</span>, </span><br><span class="line">                                 dropout=<span class="number">0.1</span>, </span><br><span class="line">                                 activation=&lt;function relu&gt;, </span><br><span class="line">                                 layer_norm_eps=<span class="number">1e-05</span>, </span><br><span class="line">                                 batch_first=<span class="literal">False</span>, </span><br><span class="line">                                 norm_first=<span class="literal">False</span>, </span><br><span class="line">                                 bias=<span class="literal">True</span>, </span><br><span class="line">                                 device=<span class="literal">None</span>, </span><br><span class="line">                                 dtype=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>d_model<ul>
+<li>模型中输入和输出的特征维度</li>
+<li>整数</li>
+</ul>
+</li>
+<li>nhead<ul>
+<li>多头自注意力机制中 head的数量</li>
+<li>整数</li>
+</ul>
+</li>
+<li>dim_feedforward<ul>
+<li>每个位置的前馈网络中隐藏层的维度</li>
+<li>整数，默认值 2048</li>
+</ul>
+</li>
+<li>dropout<ul>
+<li>用于模型中各层的丢弃概率</li>
+<li>浮点数，默认值 0.1</li>
+</ul>
+</li>
+<li>activation<ul>
+<li>前馈网络中使用的激活函数</li>
+<li>激活函数，默认为 ReLU</li>
+</ul>
+</li>
+<li>layer_norm_eps<ul>
+<li>层归一化中的 epsilon 值</li>
+<li>浮点数，默认值为 1e-05</li>
+</ul>
+</li>
+<li>batch_first<ul>
+<li>输入和输出是否以批次为第一维度（True 表示是，False 表示不是）</li>
+<li>布尔值，默认值为 False</li>
+</ul>
+</li>
+<li>norm_first<ul>
+<li>是否在自注意力和前馈网络之前应用层归一化。如果为 <code>True</code>，则在自注意力和前馈网络之前应用层归一化；如果为 <code>False</code>，则在自注意力和前馈网络之后应用层归一化</li>
+<li>布尔值，默认值为 False</li>
+</ul>
+</li>
+<li>bias<ul>
+<li>是否在自注意力和前馈网络的线性层中使用偏置</li>
+<li>布尔值，默认值为 True</li>
+</ul>
+</li>
+<li>device<ul>
+<li>模型所在的设备（如 ‘cuda’ 或 ‘cpu’）</li>
+<li>字符串，默认值为 None</li>
+</ul>
+</li>
+<li>dtype<ul>
+<li>模型的数据类型</li>
+<li><code>torch.dtype</code>，默认值为 None</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">forward(tgt, </span><br><span class="line">        memory, </span><br><span class="line">        tgt_mask=<span class="literal">None</span>, </span><br><span class="line">        memory_mask=<span class="literal">None</span>, </span><br><span class="line">        tgt_key_padding_mask=<span class="literal">None</span>, </span><br><span class="line">        memory_key_padding_mask=<span class="literal">None</span>, </span><br><span class="line">        tgt_is_causal=<span class="literal">False</span>, </span><br><span class="line">        memory_is_causal=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>tgt<ul>
+<li>目标序列</li>
+<li><code>torch.Tensor</code>，形状为 <code>(tgt_len, batch_size, d_model)</code></li>
+</ul>
+</li>
+<li>memory<ul>
+<li>编码器的输出（记忆）</li>
+<li><code>torch.Tensor</code>，形状为 <code>(src_len, batch_size, d_model)</code></li>
+</ul>
+</li>
+<li>tgt_mask<ul>
+<li>对目标序列的掩码，用于确保解码器在生成每个位置的输出时只依赖于先前生成的位置。如果为 <code>None</code>，则不应用任何掩码。</li>
+<li><code>torch.Tensor</code>，形状为 <code>(tgt_len, tgt_len)</code></li>
+</ul>
+</li>
+<li>memory_mask<ul>
+<li>对编码器输出的掩码，用于确保解码器在生成每个位置的输出时只依赖于先前生成的位置。如果为 <code>None</code>，则不应用任何掩码。</li>
+<li><code>torch.Tensor</code>，形状为 <code>(tgt_len, src_len)</code>。</li>
+</ul>
+</li>
+<li>tgt_key_padding_mask<ul>
+<li>对目标序列的填充掩码，用于屏蔽目标序列中的填充位置。如果为 <code>None</code>，则不应用任何填充掩码</li>
+<li><code>torch.Tensor</code>，形状为 <code>(batch_size, tgt_len)</code>。</li>
+</ul>
+</li>
+<li>memory_key_padding_mask<ul>
+<li>对编码器输出的填充掩码，用于屏蔽编码器输出中的填充位置。如果为 <code>None</code>，则不应用任何填充掩码</li>
+<li><code>torch.Tensor</code>，形状为 <code>(batch_size, src_len)</code></li>
+</ul>
+</li>
+<li>tgt_is_causal<ul>
+<li>指示目标序列是否是自回归的。如果为 <code>True</code>，则表示目标序列是自回归的，可以在解码器中使用；如果为 <code>False</code>，则表示目标序列已经包含了先前生成的信息</li>
+<li>布尔值，默认为 <code>False</code></li>
+</ul>
+</li>
+<li>memory_is_causal<ul>
+<li>指示编码器输出是否是自回归的。如果为 <code>True</code>，则表示编码器输出是自回归的，可以在解码器中使用；如果为 <code>False</code>，则表示编码器输出是直接的上下文信息</li>
+<li>布尔值，默认为 <code>False</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TransformerDecoderLayer</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_model, nhead, dim_feedforward=<span class="number">2048</span>, dropout=<span class="number">0.1</span>, activation=<span class="string">&quot;relu&quot;</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(TransformerDecoderLayer, self).__init__()</span><br><span class="line">        self.self_attn = nn.MultiheadAttention(d_model, nhead, dropout=dropout)</span><br><span class="line">        self.multihead_attn = nn.MultiheadAttention(d_model, nhead, dropout=dropout)</span><br><span class="line">        self.linear1 = nn.Linear(d_model, dim_feedforward)</span><br><span class="line">        self.dropout = nn.Dropout(dropout)</span><br><span class="line">        self.linear2 = nn.Linear(dim_feedforward, d_model)</span><br><span class="line">        self.norm1 = nn.LayerNorm(d_model)</span><br><span class="line">        self.norm2 = nn.LayerNorm(d_model)</span><br><span class="line">        self.norm3 = nn.LayerNorm(d_model)</span><br><span class="line">        self.dropout1 = nn.Dropout(dropout)</span><br><span class="line">        self.dropout2 = nn.Dropout(dropout)</span><br><span class="line">        self.dropout3 = nn.Dropout(dropout)</span><br><span class="line">        self.activation = nn.ReLU() <span class="keyword">if</span> activation == <span class="string">&quot;relu&quot;</span> <span class="keyword">else</span> nn.GELU()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, tgt, memory, tgt_mask=<span class="literal">None</span>, memory_mask=<span class="literal">None</span>, tgt_key_padding_mask=<span class="literal">None</span>, memory_key_padding_mask=<span class="literal">None</span></span>):</span><br><span class="line">        tgt2 = self.self_attn(tgt, tgt, tgt, attn_mask=tgt_mask, key_padding_mask=tgt_key_padding_mask)[<span class="number">0</span>]</span><br><span class="line">        tgt = tgt + self.dropout1(tgt2)</span><br><span class="line">        tgt = self.norm1(tgt)</span><br><span class="line"></span><br><span class="line">        tgt2 = self.multihead_attn(tgt, memory, memory, attn_mask=memory_mask, key_padding_mask=memory_key_padding_mask)[<span class="number">0</span>]</span><br><span class="line">        tgt = tgt + self.dropout2(tgt2)</span><br><span class="line">        tgt = self.norm2(tgt)</span><br><span class="line"></span><br><span class="line">        tgt2 = self.linear2(self.dropout(self.activation(self.linear1(tgt))))</span><br><span class="line">        tgt = tgt + self.dropout3(tgt2)</span><br><span class="line">        tgt = self.norm3(tgt)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> tgt   </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直接调用pytorch库</span></span><br><span class="line">memory = torch.randn((<span class="number">5</span>, <span class="number">2</span>, <span class="number">128</span>))</span><br><span class="line">tgt = torch.randn((<span class="number">5</span>, <span class="number">2</span>, <span class="number">128</span>))</span><br><span class="line">encoder_layer = torch.nn.TransformerDecoderLayer(d_model=<span class="number">128</span>, nhead=<span class="number">4</span>)</span><br><span class="line">output2 = encoder_layer(tgt, memory)</span><br><span class="line">output2.shape</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">torch.Size([<span class="number">5</span>, <span class="number">2</span>, <span class="number">128</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="Demo1"><a href="#Demo1" class="headerlink" title="Demo1"></a>Demo1</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TransformerEncoderLayer</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_model, nhead, dim_feedforward=<span class="number">2048</span>, dropout=<span class="number">0.1</span>, activation=<span class="string">&quot;relu&quot;</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(TransformerEncoderLayer, self).__init__()</span><br><span class="line">        self.self_attn = nn.MultiheadAttention(d_model, nhead, dropout=dropout)</span><br><span class="line">        self.linear1 = nn.Linear(d_model, dim_feedforward)</span><br><span class="line">        self.dropout = nn.Dropout(dropout)</span><br><span class="line">        self.linear2 = nn.Linear(dim_feedforward, d_model)</span><br><span class="line">        self.norm1 = nn.LayerNorm(d_model)</span><br><span class="line">        self.norm2 = nn.LayerNorm(d_model)</span><br><span class="line">        self.dropout1 = nn.Dropout(dropout)</span><br><span class="line">        self.dropout2 = nn.Dropout(dropout)</span><br><span class="line">        self.activation = nn.ReLU() <span class="keyword">if</span> activation == <span class="string">&quot;relu&quot;</span> <span class="keyword">else</span> nn.GELU()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, src, src_mask=<span class="literal">None</span>, src_key_padding_mask=<span class="literal">None</span></span>):</span><br><span class="line">        src2, att_weight = self.self_attn(src, src, src, attn_mask=src_mask,</span><br><span class="line">                              key_padding_mask=src_key_padding_mask)</span><br><span class="line">        src = src + self.dropout1(src2)</span><br><span class="line">        src = self.norm1(src)</span><br><span class="line"></span><br><span class="line">        src2 = self.linear2(self.dropout(self.activation(self.linear1(src))))</span><br><span class="line">        src = src + self.dropout2(src2)</span><br><span class="line">        src = self.norm2(src)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> src,att_weight</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PositionalEncoding</span>(nn.Module):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_model, dropout=<span class="number">0.1</span>, max_len=<span class="number">2000</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(PositionalEncoding, self).__init__()</span><br><span class="line">        self.dropout = nn.Dropout(p=dropout)</span><br><span class="line"></span><br><span class="line">        pe = torch.zeros(max_len, d_model)</span><br><span class="line">        position = torch.arange(<span class="number">0</span>, max_len, dtype=torch.<span class="built_in">float</span>).unsqueeze(<span class="number">1</span>)</span><br><span class="line">        div_term = torch.exp(torch.arange(<span class="number">0</span>, d_model, <span class="number">2</span>).<span class="built_in">float</span>() * (-math.log(<span class="number">10000.0</span>) / d_model))</span><br><span class="line">        pe[:, <span class="number">0</span>::<span class="number">2</span>] = torch.sin(position * div_term)</span><br><span class="line">        pe[:, <span class="number">1</span>::<span class="number">2</span>] = torch.cos(position * div_term)</span><br><span class="line">        pe = pe.unsqueeze(<span class="number">0</span>).transpose(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">        self.register_buffer(<span class="string">&#x27;pe&#x27;</span>, pe)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = x + self.pe[:x.size(<span class="number">0</span>), :]</span><br><span class="line">        <span class="keyword">return</span> self.dropout(x)</span><br><span class="line">        </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyNet</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,vocab_size,d_model,nlayers,nhead,dropout,dim_feedforward</span>):</span><br><span class="line">        <span class="built_in">super</span>(MyNet, self).__init__()</span><br><span class="line"></span><br><span class="line">        self.embeding = nn.Embedding(vocab_size,d_model)</span><br><span class="line">        self.pos_encoder = PositionalEncoding(d_model)</span><br><span class="line"></span><br><span class="line">        self.transformer_encoder = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(nlayers):</span><br><span class="line">            self.transformer_encoder.append(TransformerEncoderLayer(d_model, nhead, dim_feedforward, dropout))</span><br><span class="line">        self.transformer_encoder= nn.ModuleList(self.transformer_encoder)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#self.decoder = nn.Linear(,dim_feedforward)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self,x</span>):</span><br><span class="line">        <span class="comment"># (batch_size, sequence_length , features)</span></span><br><span class="line">        x = self.embeding(x)</span><br><span class="line">        x = self.pos_encoder(x)</span><br><span class="line">        <span class="comment"># (sequence_length, batch_size, features)</span></span><br><span class="line">        x = x.permute(<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        attention_weights = []</span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.transformer_encoder:</span><br><span class="line">            x,attention_weights_layer=layer(x)</span><br><span class="line">            attention_weights.append(attention_weights_layer)</span><br><span class="line">        attention_weights=torch.stack(attention_weights)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># (sequence_length, batch_size, features)-&gt;(batch_size, sequence_length, features)</span></span><br><span class="line">        <span class="comment"># [10, 5, 128] </span></span><br><span class="line">        x = x.permute(<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>)</span><br><span class="line">        <span class="comment"># (nlayers,batch_size,sequence_length,sequence_length)-&gt;(batch_size, nlayers,sequence_length,sequence_length)</span></span><br><span class="line">        <span class="comment"># [4, 5, 10, 10]</span></span><br><span class="line">        attention_weights = attention_weights.permute(<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x,attention_weights</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vocab_size=<span class="number">20</span></span><br><span class="line">d_model=<span class="number">128</span></span><br><span class="line">nlayers=<span class="number">3</span></span><br><span class="line">nhead=<span class="number">4</span></span><br><span class="line">dropout=<span class="number">0.2</span></span><br><span class="line">dim_feedforward=<span class="number">1024</span></span><br><span class="line"></span><br><span class="line">net = MyNet(vocab_size,d_model,nlayers,nhead,dropout,dim_feedforward)</span><br><span class="line"></span><br><span class="line">x = torch.rand((<span class="number">5</span>, <span class="number">10</span>))*<span class="number">10</span></span><br><span class="line">x = x.long()</span><br><span class="line">out,att_weight = net(x)</span><br><span class="line">out.shape</span><br><span class="line">att_weight.shape</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">torch.Size([<span class="number">5</span>, <span class="number">10</span>, <span class="number">128</span>])</span><br><span class="line">torch.Size([<span class="number">5</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">10</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="Demo2"><a href="#Demo2" class="headerlink" title="Demo2"></a>Demo2</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">K_mer_aggregate</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,kmers,in_dim,out_dim,dropout=<span class="number">0.1</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(K_mer_aggregate, self).__init__()</span><br><span class="line">        self.dropout=nn.Dropout(dropout)</span><br><span class="line">        self.convs=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> kmers:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            <span class="comment"># sequence_length -&gt; sequence_length-i+1</span></span><br><span class="line">            self.convs.append(nn.Conv1d(in_dim,out_dim,i,padding=<span class="number">0</span>))</span><br><span class="line">        self.convs=nn.ModuleList(self.convs)</span><br><span class="line">        self.activation=nn.ReLU(inplace=<span class="literal">True</span>)</span><br><span class="line">        self.norm=nn.LayerNorm(out_dim)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self,x</span>):</span><br><span class="line">        <span class="comment"># 卷积是在最后一个维度上做的</span></span><br><span class="line">        <span class="comment"># (batch_size, sequence_length, features)-&gt;(batch_size, features, sequence_length)</span></span><br><span class="line">        x = x.permute(<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">        outputs=[]</span><br><span class="line">        <span class="keyword">for</span> conv <span class="keyword">in</span> self.convs:</span><br><span class="line">            outputs.append(conv(x))</span><br><span class="line">        outputs=torch.cat(outputs,dim=<span class="number">2</span>)</span><br><span class="line">        outputs=self.norm(outputs.permute(<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> outputs</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">kmers = [<span class="number">3</span>,<span class="number">6</span>]</span><br><span class="line">ninp = <span class="number">128</span></span><br><span class="line">K  = K_mer_aggregate(kmers,ninp,ninp)</span><br><span class="line"></span><br><span class="line">x = torch.rand((<span class="number">5</span>, <span class="number">10</span>,<span class="number">128</span>))*<span class="number">10</span></span><br><span class="line">out = K(x)</span><br><span class="line">out.shape</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="comment"># 13 = (10-3+1) + (10-6+1)</span></span><br><span class="line">torch.Size([<span class="number">5</span>, <span class="number">13</span>, <span class="number">128</span>])</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/nn.html#transformer-layers">torch.nn — PyTorch 2.1 documentation</a></p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Transformer/"># Transformer</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/01/17/RNN/">RNN</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Bin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
