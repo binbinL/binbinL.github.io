@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Bin">
+
+
+
+    <meta name="description" content="Record the learning process">
+
+
+
+<title>Download Data | Notes</title>
+
+
+
+    <link rel="icon" href="/001.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/"></a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/"></a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Download Data</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 26, 2024&nbsp;&nbsp;10:07:25</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/NGS/">NGS</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="iseq"><a href="#iseq" class="headerlink" title="iseq"></a>iseq</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/BioOmics/iSeq">BioOmics&#x2F;iSeq</a></li>
+<li>Get fastq.gz data easily</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">download.sh</span></span><br><span class="line">cd $1 || &#123; echo &quot;Error: Unable to change directory to \$1&quot;; exit 1; &#125;</span><br><span class="line">mkdir raw</span><br><span class="line">cat SRR_Acc_List.txt | while read Run; </span><br><span class="line">do</span><br><span class="line">    cd raw</span><br><span class="line">    iseq -i $Run -a -g</span><br><span class="line">done</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># bash</span></span></span><br><span class="line">sh download.sh [path]</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># struc</span></span></span><br><span class="line">/path</span><br><span class="line">/path/SRR_Acc_List.txt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Create the raw directory in path, and the downloaded data will be saved here</li>
+</ul>
+<h2 id="pysradb"><a href="#pysradb" class="headerlink" title="pysradb"></a>pysradb</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/saketkc/pysradb">pysradb</a></li>
+<li>Get GSE metadata</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> pysradb.sraweb <span class="keyword">import</span> SRAweb</span><br><span class="line">db = SRAweb()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gse = <span class="string">&#x27;GSE197726&#x27;</span></span><br><span class="line">srp = db.gse_to_srp(gse)</span><br><span class="line">srp</span><br><span class="line"><span class="comment">## output</span></span><br><span class="line">study_alias	study_accession</span><br><span class="line"><span class="number">0</span>	GSE197726	SRP362072</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Output all SRR metadata corresponding to the GSE </span></span><br><span class="line">df_meta = db.sra_metadata(srp[<span class="string">&#x27;study_accession&#x27;</span>], detailed=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(df_meta.columns)</span><br><span class="line">df_meta.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># modify</span></span><br><span class="line"></span><br><span class="line">col = [<span class="string">&#x27;run_accession&#x27;</span>,<span class="string">&#x27;library_name&#x27;</span>,<span class="string">&#x27;study_title&#x27;</span>,<span class="string">&#x27;organism_name&#x27;</span>,<span class="string">&#x27;library_strategy&#x27;</span>,<span class="string">&#x27;library_source&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;source_name&#x27;</span>,<span class="string">&#x27;tissue&#x27;</span>,<span class="string">&#x27;circadian time&#x27;</span>,<span class="string">&#x27;genotype&#x27;</span>,<span class="string">&#x27;treatment&#x27;</span>,<span class="string">&#x27;sex&#x27;</span>,<span class="string">&#x27;cell type&#x27;</span>,<span class="string">&#x27;age]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">df_index = df_meta.loc[:,col]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## modify </span></span><br><span class="line"><span class="string"># df_index = df_index.rename(columns=&#123;&#x27;</span>time point<span class="string">&#x27;: &#x27;</span>time<span class="string">&#x27;&#125;)</span></span><br><span class="line"><span class="string"># df_index[&#x27;</span>time<span class="string">&#x27;] = df_index[&#x27;</span>time<span class="string">&#x27;].apply(lambda x: &#x27;</span>CT<span class="string">&#x27; + str(x))</span></span><br><span class="line"><span class="string"># df_index[&#x27;</span>time<span class="string">&#x27;] = df_index[&#x27;</span>time<span class="string">&#x27;].apply(lambda x: str(x).replace(&quot; &quot;,&quot;&quot;))</span></span><br><span class="line"><span class="string"># df_index[&#x27;</span>time<span class="string">&#x27;] = df_index[&#x27;</span>experiment_title<span class="string">&#x27;].apply(lambda x: str(x).split(&#x27;</span>;<span class="string">&#x27;)[0].split(&#x27;</span>_<span class="string">&#x27;)[-2])</span></span><br><span class="line"><span class="string"># df_index[&#x27;</span>time<span class="string">&#x27;] = df_index[&#x27;</span>time<span class="string">&#x27;].apply(lambda x: &#x27;</span>ZT<span class="string">&#x27; + str(x))</span></span><br><span class="line"><span class="string"># df_index = df_index.drop(&#x27;</span>experiment_title<span class="string">&#x27;, axis=1)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">df_index.insert(0,&#x27;</span>gse_accession<span class="string">&#x27;,[gse]*len(df_index))</span></span><br><span class="line"><span class="string">df_index</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="fasterq-dump"><a href="#fasterq-dump" class="headerlink" title="fasterq-dump"></a>fasterq-dump</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/ncbi/sra-tools/wiki/HowTo:-fasterq-dump">fasterq dump </a></p>
+</li>
+<li><p>convert SRR data to fastq data</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># run one</span></span><br><span class="line">fasterq-dump -e 10 -p --split-3 -O [outdir] [sra]</span><br><span class="line"></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$1</span> || &#123; <span class="built_in">echo</span> <span class="string">&quot;Error: Unable to change directory to \$1&quot;</span>; <span class="built_in">exit</span> 1; &#125;</span><br><span class="line"><span class="built_in">mkdir</span> fastq</span><br><span class="line">fqdir=<span class="string">&quot;<span class="variable">$1</span>/fastq&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> sra_file <span class="keyword">in</span> <span class="variable">$1</span>/SRR*[0-9];</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  start_time=$(<span class="built_in">date</span> +<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</span><br><span class="line">  fasterq-dump -e 10 -p --split-3 -O <span class="variable">$&#123;fqdir&#125;</span> <span class="variable">$&#123;sra_file&#125;</span></span><br><span class="line">  end_time=$(<span class="built_in">date</span> +<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Sample ID: <span class="variable">$&#123;sra_file&#125;</span> - Start Time: <span class="variable">$&#123;start_time&#125;</span> - End Time: <span class="variable">$&#123;end_time&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="parallel-fastq-dump"><a href="#parallel-fastq-dump" class="headerlink" title="parallel-fastq-dump"></a>parallel-fastq-dump</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/rvalieris/parallel-fastq-dump">parallel-fastq-dump</a></p>
+</li>
+<li><p>convert SRR data to fastq&#x2F;fastq.gz data</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># run one</span></span><br><span class="line">parallel-fastq-dump -s [sra_file] -t 8  -O [outdir] --split-files --gzip</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$1</span> || &#123; <span class="built_in">echo</span> <span class="string">&quot;Error: Unable to change directory to \$1&quot;</span>; <span class="built_in">exit</span> 1; &#125;</span><br><span class="line"><span class="built_in">mkdir</span> fastq</span><br><span class="line">fqdir=<span class="string">&quot;<span class="variable">$1</span>/fastq&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> sra_file <span class="keyword">in</span> <span class="variable">$1</span>/SRR*[0-9];</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  start_time=$(<span class="built_in">date</span> +<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</span><br><span class="line">  parallel-fastq-dump -s <span class="variable">$&#123;sra_file&#125;</span> -t 8  -O <span class="variable">$&#123;fqdir&#125;</span> --split-files --gzip </span><br><span class="line">  end_time=$(<span class="built_in">date</span> +<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Sample ID: <span class="variable">$&#123;sra_file&#125;</span> - Start Time: <span class="variable">$&#123;start_time&#125;</span> - End Time: <span class="variable">$&#123;end_time&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/tech/"># tech</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/03/15/Linux/">Linux</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Bin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

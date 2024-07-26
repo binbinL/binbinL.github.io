@@ -225,7 +225,12 @@
 <ul>
 <li>新环境</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda activate new_env</span><br><span class="line">conda install -c conda-forge ipykernel</span><br><span class="line"><span class="comment"># 使用 ipykernel 在当前环境中创建一个新的内核：</span></span><br><span class="line">python -m ipykernel install --user --name new_env --display-name <span class="string">&quot;new_env&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">conda activate new_env</span><br><span class="line">conda install -c conda-forge ipykernel</span><br><span class="line"><span class="comment"># 使用 ipykernel 在当前环境中创建一个新的内核</span></span><br><span class="line"><span class="comment"># 此python为当前环境下的，若其他语言，应该是直接换&#x27;python&#x27; 吧</span></span><br><span class="line">python -m ipykernel install --user --name new_env --display-name <span class="string">&quot;new_env&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看&#x2F;删除 内核</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jupyter kernelspec <span class="built_in">list</span></span><br><span class="line"></span><br><span class="line">jupyter kernelspec remove ***</span><br></pre></td></tr></table></figure>
 
 
 
