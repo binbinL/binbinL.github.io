@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Bin">
+
+
+
+    <meta name="description" content="Record the learning process">
+
+
+
+<title>Time Series Data Cluster | Notes</title>
+
+
+
+    <link rel="icon" href="/001.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/"></a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/"></a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Time Series Data Cluster</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 30, 2024&nbsp;&nbsp;14:52:04</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="特征表示"><a href="#特征表示" class="headerlink" title="特征表示"></a>特征表示</h2><p>通常作为其他时间序列挖掘任务的子程序或中间件</p>
+<ul>
+<li>数据降维</li>
+</ul>
+<h2 id="相似性度量"><a href="#相似性度量" class="headerlink" title="相似性度量"></a>相似性度量</h2><p>是时间序列聚类算法中必不可少的中间件</p>
+<ul>
+<li>基于欧氏距离（ED：Euclidean distance）</li>
+</ul>
+<p>$$<br>\mathrm{ED}(A, B)&#x3D;\sqrt{\sum_{i&#x3D;1}^{m}\left(a_{i}-b_{i}\right)^{2}}<br>$$</p>
+<p>欧氏距离对时间序列进行了同步硬性度量,满足三角不等式，比较适用于时间序列的相似性搜索，但其结果易受异常数据点的影响，且无法度量不等长时间序列之间的相似性</p>
+<ul>
+<li>基于动态时间弯曲（DWT：Dynamic time warping）</li>
+</ul>
+<p>$$<br>\begin{array}{c}<br>\operatorname{DTW}(A, B)&#x3D;\min <em>{P}\left{\frac{1}{K} \sum</em>{k&#x3D;1}^{K} \operatorname{dist}\left(p_{k}\right)\right} \<br>\text { 式中, } \operatorname{dist}\left(p_{k}\right)&#x3D;\left|a_{i}-b_{j}\right|_{2^{\circ}}<br>\end{array}<br>$$</p>
+<p>动态时间弯曲方法根据最优化匹配路径，实现异步相似形态的度量，利用动态规划方法从两条时间序列中找到一条距离最优的弯曲路径，使具有相似形态的异步数据相互匹配，进而实现不等长时间序列之间的距离度量，但其平方阶的时间复杂度限制了其在高维时间序列数据聚类过程中的应用</p>
+<ul>
+<li>基于形状度量（SBD：shape-based distance）</li>
+</ul>
+<h2 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h2><ul>
+<li>层次聚类</li>
+<li>划分聚类<ul>
+<li>先设定聚类个数，通常使用相似性度量来实现簇的划分</li>
+</ul>
+</li>
+<li>基于模型聚类<ul>
+<li>假设同一簇中数据服从某种模型的数据分布，通过数据模型学习来试图调整近似模型，使其接近数据客观存在的真实模型</li>
+</ul>
+</li>
+<li>基于密度聚类 和 基于格的聚类<ul>
+<li>时间序列数据转化为另一种数据形态，使其能够适用于传统数据挖掘中的聚类算法</li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.juestc.uestc.edu.cn/fileDZKJDX_ZKB/journal/article/dzkjdxxbzrkxb/2022/3/PDF/2022055.pdf">2022055.pdf (uestc.edu.cn)</a></p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Cluster/"># Cluster</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/07/26/Download/">Download Data</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Bin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
