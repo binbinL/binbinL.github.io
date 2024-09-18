@@ -15,7 +15,7 @@
 
 
 
-<title>TimeSeriesDataCluster | Notes</title>
+<title>DataPreProcess | Notes</title>
 
 
 
@@ -191,21 +191,21 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">TimeSeriesDataCluster</h1>
+            <h1 class="post-title">DataPreProcess</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 30, 2024&nbsp;&nbsp;14:52:04</a>
+                        Date: <a href="#">September 18, 2024&nbsp;&nbsp;15:53:07</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Cluster/">Cluster</a>
+                                <a href="/categories/DataMining/">DataMining</a>
                             
                         </span>
                     
@@ -214,40 +214,59 @@
         </header>
 
         <div class="post-content">
-            <h2 id="特征表示"><a href="#特征表示" class="headerlink" title="特征表示"></a>特征表示</h2><p>通常作为其他时间序列挖掘任务的子程序或中间件</p>
-<ul>
-<li>数据降维</li>
-</ul>
-<h2 id="相似性度量"><a href="#相似性度量" class="headerlink" title="相似性度量"></a>相似性度量</h2><p>是时间序列聚类算法中必不可少的中间件</p>
-<ul>
-<li>基于欧氏距离（ED：Euclidean distance）</li>
-</ul>
-<p>$$<br>\mathrm{ED}(A, B)&#x3D;\sqrt{\sum_{i&#x3D;1}^{m}\left(a_{i}-b_{i}\right)^{2}}<br>$$</p>
-<p>欧氏距离对时间序列进行了同步硬性度量,满足三角不等式，比较适用于时间序列的相似性搜索，但其结果易受异常数据点的影响，且无法度量不等长时间序列之间的相似性</p>
-<ul>
-<li>基于动态时间弯曲（DWT：Dynamic time warping）</li>
-</ul>
-<p>$$<br>\begin{array}{c}<br>\operatorname{DTW}(A, B)&#x3D;\min <em>{P}\left{\frac{1}{K} \sum</em>{k&#x3D;1}^{K} \operatorname{dist}\left(p_{k}\right)\right} \<br>\text { 式中, } \operatorname{dist}\left(p_{k}\right)&#x3D;\left|a_{i}-b_{j}\right|_{2^{\circ}}<br>\end{array}<br>$$</p>
-<p>动态时间弯曲方法根据最优化匹配路径，实现异步相似形态的度量，利用动态规划方法从两条时间序列中找到一条距离最优的弯曲路径，使具有相似形态的异步数据相互匹配，进而实现不等长时间序列之间的距离度量，但其平方阶的时间复杂度限制了其在高维时间序列数据聚类过程中的应用</p>
-<ul>
-<li>基于形状度量（SBD：shape-based distance）</li>
-</ul>
-<h2 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h2><ul>
-<li>层次聚类</li>
-<li>划分聚类<ul>
-<li>先设定聚类个数，通常使用相似性度量来实现簇的划分</li>
-</ul>
-</li>
-<li>基于模型聚类<ul>
-<li>假设同一簇中数据服从某种模型的数据分布，通过数据模型学习来试图调整近似模型，使其接近数据客观存在的真实模型</li>
-</ul>
-</li>
-<li>基于密度聚类 和 基于格的聚类<ul>
-<li>时间序列数据转化为另一种数据形态，使其能够适用于传统数据挖掘中的聚类算法</li>
+            <h2 id="数据质量分析"><a href="#数据质量分析" class="headerlink" title="数据质量分析"></a>数据质量分析</h2><h3 id="数据清洗-处理脏数据"><a href="#数据清洗-处理脏数据" class="headerlink" title="数据清洗-处理脏数据"></a>数据清洗-处理脏数据</h3><ul>
+<li>缺失值<ul>
+<li>统计分析</li>
+<li>解决方法<ul>
+<li>删除</li>
+<li>插补</li>
+<li>不做处理</li>
 </ul>
 </li>
 </ul>
-<p><a target="_blank" rel="noopener" href="https://www.juestc.uestc.edu.cn/fileDZKJDX_ZKB/journal/article/dzkjdxxbzrkxb/2022/3/PDF/2022055.pdf">2022055.pdf (uestc.edu.cn)</a></p>
+</li>
+<li>异常值<ul>
+<li>统计分析、正态分布、箱型图</li>
+<li>解决方法<ul>
+<li>不处理</li>
+<li>均值&#x2F;中值 替换</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据特征分析"><a href="#数据特征分析" class="headerlink" title="数据特征分析"></a>数据特征分析</h3><ul>
+<li>数据分布</li>
+<li>相关性分析</li>
+<li>贡献度分析</li>
+</ul>
+<h2 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h2><h3 id="特征变化"><a href="#特征变化" class="headerlink" title="特征变化"></a>特征变化</h3><ul>
+<li>函数变化：将不具有正态分布特性的数据转化成具有正态分布特征的数据</li>
+<li>最大-最小规范化</li>
+<li>零-均值规范化</li>
+<li>连续数据离散化<ul>
+<li>等宽</li>
+<li>等频</li>
+<li>聚类</li>
+</ul>
+</li>
+<li>离散数据连续化<ul>
+<li>独热编码</li>
+<li>序数编码</li>
+</ul>
+</li>
+</ul>
+<h3 id="特征降维"><a href="#特征降维" class="headerlink" title="特征降维"></a>特征降维</h3><ul>
+<li>主成分分析</li>
+<li>线性判别分析</li>
+<li>奇异值分解</li>
+<li>t-SNE</li>
+<li>自编码器</li>
+</ul>
+<h3 id="特征融合"><a href="#特征融合" class="headerlink" title="特征融合"></a>特征融合</h3><ul>
+<li>特征组合</li>
+<li>嵌入：高维-&gt;低维</li>
+</ul>
 
         </div>
 
@@ -257,6 +276,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/DataMining/"># DataMining</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -267,10 +290,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/09/18/DataPreProcess/">DataPreProcess</a>
             
-            
-            <a class="next" rel="next" href="/2024/07/26/Download/">Download Data</a>
+            <a class="next" rel="next" href="/2024/07/30/TimeSeriesDataCluster/">TimeSeriesDataCluster</a>
             
         </section>
 
